@@ -4,6 +4,9 @@
 
 Send DBus notifications, purely in rust,
 using [dbus-rs](https://github.com/diwic/dbus-rs/).
+This implementation does not rely on libnotify!
+Basic notification features are supported, more sophisticated functionality will follow.
+The API shown below should be stable.
 
 
 ```toml
