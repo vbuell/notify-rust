@@ -81,7 +81,23 @@ Simple html markup should be supported, depending on the server implementation.<
 can all be used.
 You can also use an absolute path to file.</p>
 </div><h4 id='method.hint' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.hint' class='fnname'>hint</a>(&amp;mut self, hint: <a class='enum' href='../notify_rust/enum.NotificationHint.html' title='notify_rust::NotificationHint'>NotificationHint</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
-<h4 id='method.timeout' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.timeout' class='fnname'>timeout</a>(&amp;mut self, timeout: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Adds a hint.</p>
+
+<p>This method will add a hint to the internal hint hashset.
+Hints must be of type NotificationHint.</p>
+<pre id='rust-example-rendered' class='rust '>
+<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
+<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span>;
+<span class='ident'>Notification</span>::<span class='ident'>new</span>()
+    .<span class='ident'>summary</span>(<span class='string'>&quot;Category:email&quot;</span>)
+    .<span class='ident'>body</span>(<span class='string'>&quot;This has nothing to do with emails.\nIt should not go away untill you acknoledge it.&quot;</span>)
+    .<span class='ident'>icon</span>(<span class='string'>&quot;thunderbird&quot;</span>)
+    .<span class='ident'>appname</span>(<span class='string'>&quot;thunderbird&quot;</span>)
+    .<span class='ident'>hint</span>(<span class='ident'>NotificationHint</span>::<span class='ident'>Category</span>(<span class='string'>&quot;email&quot;</span>.<span class='ident'>to_string</span>()))
+    .<span class='ident'>hint</span>(<span class='ident'>NotificationHint</span>::<span class='ident'>Resident</span>(<span class='boolval'>true</span>))
+    .<span class='ident'>show</span>();
+</pre>
+</div><h4 id='method.timeout' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.timeout' class='fnname'>timeout</a>(&amp;mut self, timeout: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Set the <code>timeout</code>.</p>
 
 <p>This sets the time (in miliseconds) from the time the notification is displayed until it is
