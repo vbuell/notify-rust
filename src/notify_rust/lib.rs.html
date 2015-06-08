@@ -366,19 +366,74 @@
 <span id="324">324</span>
 <span id="325">325</span>
 <span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Desktop Notifications for Rust.</span>
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! Desktop notifications are popup messages generated to notify the user of certain events.</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! # Example</span>
+<span class='doccomment'>//! # Examples</span>
 <span class='doccomment'>//! ```</span>
+<span class='doccomment'>//! // Example 1</span>
 <span class='doccomment'>//! use notify_rust::Notification;</span>
+<span class='doccomment'>//! use notify_rust::NotificationHint as Hint;</span>
+<span class='doccomment'>//!</span>
 <span class='doccomment'>//! Notification::new()</span>
 <span class='doccomment'>//!     .summary(&quot;Firefox News&quot;)</span>
 <span class='doccomment'>//!     .body(&quot;This will almost look like a real firefox notification.&quot;)</span>
 <span class='doccomment'>//!     .icon(&quot;firefox&quot;)</span>
 <span class='doccomment'>//!     .show();</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! // Example 2</span>
+<span class='doccomment'>//! Notification::new()</span>
+<span class='doccomment'>//!     .summary(&quot;Another notification with actions&quot;)</span>
+<span class='doccomment'>//!     .body(&quot;Here each one was added separately.&quot;)</span>
+<span class='doccomment'>//!     .icon(&quot;firefox&quot;)</span>
+<span class='doccomment'>//!     .timeout(6000) //miliseconds</span>
+<span class='doccomment'>//!     .action(&quot;action0&quot;, &quot;Press me please&quot;)</span>
+<span class='doccomment'>//!     .action(&quot;action1&quot;, &quot;firefox&quot;)</span>
+<span class='doccomment'>//!     .show();</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! // Example 3</span>
+<span class='doccomment'>//! Notification::new()</span>
+<span class='doccomment'>//!     .summary(&quot;Category:email&quot;)</span>
+<span class='doccomment'>//!     .body(&quot;This has nothing to do with emails.\nIt should not go away untill you acknoledge it.&quot;)</span>
+<span class='doccomment'>//!     .icon(&quot;thunderbird&quot;)</span>
+<span class='doccomment'>//!     .appname(&quot;thunderbird&quot;)</span>
+<span class='doccomment'>//!     .hint(Hint::Category(&quot;email&quot;.to_string()))</span>
+<span class='doccomment'>//!     .hint(Hint::Resident(true))</span>
+<span class='doccomment'>//!     .show();</span>
+
 <span class='doccomment'>//! ```</span>
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>env</span>;
@@ -393,7 +448,7 @@
 <span class='doccomment'>/// Executable Name</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// Returns the name of the current executable, used as a default for `Notification.appname`.</span>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>exe_name</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span>
+<span class='kw'>fn</span> <span class='ident'>exe_name</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span>
 {
     <span class='kw'>let</span> <span class='ident'>exe</span> <span class='op'>=</span> <span class='ident'>env</span>::<span class='ident'>current_exe</span>().<span class='ident'>unwrap</span>();
     <span class='ident'>exe</span>.<span class='ident'>file_name</span>().<span class='ident'>unwrap</span>().<span class='ident'>to_str</span>().<span class='ident'>unwrap</span>().<span class='ident'>to_string</span>()
@@ -405,12 +460,19 @@
 
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Notification</span>
 {
+    <span class='doccomment'>/// Filled by default with executable name.</span>
     <span class='kw'>pub</span> <span class='ident'>appname</span>: <span class='ident'>String</span>,
+    <span class='doccomment'>/// Single line to summarize the content.</span>
     <span class='kw'>pub</span> <span class='ident'>summary</span>: <span class='ident'>String</span>,
+    <span class='doccomment'>/// Multiple lines possible, may support simple markup,</span>
+    <span class='doccomment'>/// checkout `Notification::get_capabilities()` -&gt; `body-markup` and `body-hyperlinks`.</span>
     <span class='kw'>pub</span> <span class='ident'>body</span>:    <span class='ident'>String</span>,
+    <span class='doccomment'>/// Use a file:// URI or a name in an icon theme, must be compliant freedesktop.org.</span>
     <span class='kw'>pub</span> <span class='ident'>icon</span>:    <span class='ident'>String</span>,
+    <span class='doccomment'>/// Checkout `NotificationHint`</span>
     <span class='kw'>pub</span> <span class='ident'>hints</span>:   <span class='ident'>HashSet</span><span class='op'>&lt;</span><span class='ident'>NotificationHint</span><span class='op'>&gt;</span>,
     <span class='kw'>pub</span> <span class='ident'>actions</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>String</span><span class='op'>&gt;</span>,
+    <span class='doccomment'>/// Lifetime of the Notification in ms. Often not respected by server, sorry.</span>
     <span class='kw'>pub</span> <span class='ident'>timeout</span>: <span class='ident'>i32</span>
 }
 
@@ -502,7 +564,7 @@
     <span class='doccomment'>/// use notify_rust::NotificationHint;</span>
     <span class='doccomment'>/// Notification::new()</span>
     <span class='doccomment'>///     .summary(&quot;Category:email&quot;)</span>
-    <span class='doccomment'>///     .body(&quot;This has nothing to do with emails.\nIt should not go away untill you acknoledge it.&quot;)</span>
+    <span class='doccomment'>///     .body(&quot;This should not go away until you acknoledge it.&quot;)</span>
     <span class='doccomment'>///     .icon(&quot;thunderbird&quot;)</span>
     <span class='doccomment'>///     .appname(&quot;thunderbird&quot;)</span>
     <span class='doccomment'>///     .hint(NotificationHint::Category(&quot;email&quot;.to_string()))</span>

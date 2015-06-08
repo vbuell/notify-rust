@@ -43,18 +43,41 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>notify_rust</a><wbr></span><span class='out-of-band'><a href='stability.html'>[stability]</a> <span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-0' href='../src/notify_rust/lib.rs.html#1-324'>[src]</a></span></h1>
+        </span><a id='src-0' href='../src/notify_rust/lib.rs.html#1-355'>[src]</a></span></h1>
 <div class='docblock'><p>Desktop Notifications for Rust.</p>
 
 <p>Desktop notifications are popup messages generated to notify the user of certain events.</p>
 
-<h1 id="example" class='section-header'><a
-                           href="#example">Example</a></h1><pre id='rust-example-rendered' class='rust '>
+<h1 id="examples" class='section-header'><a
+                           href="#examples">Examples</a></h1><pre id='rust-example-rendered' class='rust '>
+<span class='comment'>// Example 1</span>
 <span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
+<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span> <span class='kw'>as</span> <span class='ident'>Hint</span>;
+
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;Firefox News&quot;</span>)
     .<span class='ident'>body</span>(<span class='string'>&quot;This will almost look like a real firefox notification.&quot;</span>)
     .<span class='ident'>icon</span>(<span class='string'>&quot;firefox&quot;</span>)
+    .<span class='ident'>show</span>();
+
+<span class='comment'>// Example 2</span>
+<span class='ident'>Notification</span>::<span class='ident'>new</span>()
+    .<span class='ident'>summary</span>(<span class='string'>&quot;Another notification with actions&quot;</span>)
+    .<span class='ident'>body</span>(<span class='string'>&quot;Here each one was added separately.&quot;</span>)
+    .<span class='ident'>icon</span>(<span class='string'>&quot;firefox&quot;</span>)
+    .<span class='ident'>timeout</span>(<span class='number'>6000</span>) <span class='comment'>//miliseconds</span>
+    .<span class='ident'>action</span>(<span class='string'>&quot;action0&quot;</span>, <span class='string'>&quot;Press me please&quot;</span>)
+    .<span class='ident'>action</span>(<span class='string'>&quot;action1&quot;</span>, <span class='string'>&quot;firefox&quot;</span>)
+    .<span class='ident'>show</span>();
+
+<span class='comment'>// Example 3</span>
+<span class='ident'>Notification</span>::<span class='ident'>new</span>()
+    .<span class='ident'>summary</span>(<span class='string'>&quot;Category:email&quot;</span>)
+    .<span class='ident'>body</span>(<span class='string'>&quot;This has nothing to do with emails.\nIt should not go away untill you acknoledge it.&quot;</span>)
+    .<span class='ident'>icon</span>(<span class='string'>&quot;thunderbird&quot;</span>)
+    .<span class='ident'>appname</span>(<span class='string'>&quot;thunderbird&quot;</span>)
+    .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Category</span>(<span class='string'>&quot;email&quot;</span>.<span class='ident'>to_string</span>()))
+    .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Resident</span>(<span class='boolval'>true</span>))
     .<span class='ident'>show</span>();
 </pre>
 </div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
@@ -79,14 +102,6 @@
                         <td><a class='stability Unmarked' title='No stability level'></a><a class='enum' href='enum.NotificationHint.html'
                                title='notify_rust::NotificationHint'>NotificationHint</a></td>
                         <td class='docblock short'></td>
-                    </tr>
-                </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
-<table>
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.exe_name.html'
-                               title='notify_rust::exe_name'>exe_name</a></td>
-                        <td class='docblock short'><p>Executable Name</p>
-</td>
                     </tr>
                 </table></section>
     <section id='search' class="content hidden"></section>

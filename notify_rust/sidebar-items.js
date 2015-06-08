@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["exe_name","Executable Name"]],"enum":[["NotificationHint",""]],"struct":[["Notification","Desktop Notification."]],"mod":[["server","**Experimental** server taking the place of your Desktop Environments Notification Server."]]});
+initSidebarItems({"mod":[["server","**Experimental** server taking the place of your Desktop Environments Notification Server."]],"enum":[["NotificationHint",""]],"struct":[["Notification","Desktop Notification."]]});
