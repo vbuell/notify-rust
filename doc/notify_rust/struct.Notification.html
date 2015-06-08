@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Notification` struct in crate `notify_rust`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Notification">
+
+    <title>notify_rust::Notification - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>notify_rust</a></p><script>window.sidebarCurrent = {name: 'Notification', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>notify_rust</a>::<wbr><a class='struct' href=''>Notification</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-416' href='../src/notify_rust/lib.rs.html#37-46'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Notification {
+    pub appname: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
+    pub summary: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
+    pub body: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
+    pub icon: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
+    pub hints: <a class='struct' href='http://doc.rust-lang.org/nightly/std/collections/hash/set/struct.HashSet.html' title='std::collections::hash::set::HashSet'>HashSet</a>&lt;<a class='enum' href='../notify_rust/enum.NotificationHint.html' title='notify_rust::NotificationHint'>NotificationHint</a>&gt;,
+    pub actions: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
+    pub timeout: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>,
+}</pre><div class='docblock'><p>Desktop Notification.</p>
+
+<p>A desktop notification is configured via builder pattern, before it is launched with <code>show()</code>.</p>
+</div><h2 class='fields'>Fields</h2>
+<table><tr><td id='structfield.appname'><a class='stability Unmarked' title='No stability level'></a><code>appname</code></td><td></td></tr><tr><td id='structfield.summary'><a class='stability Unmarked' title='No stability level'></a><code>summary</code></td><td></td></tr><tr><td id='structfield.body'><a class='stability Unmarked' title='No stability level'></a><code>body</code></td><td></td></tr><tr><td id='structfield.icon'><a class='stability Unmarked' title='No stability level'></a><code>icon</code></td><td></td></tr><tr><td id='structfield.hints'><a class='stability Unmarked' title='No stability level'></a><code>hints</code></td><td></td></tr><tr><td id='structfield.actions'><a class='stability Unmarked' title='No stability level'></a><code>actions</code></td><td></td></tr><tr><td id='structfield.timeout'><a class='stability Unmarked' title='No stability level'></a><code>timeout</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Constructs a new Notification.</p>
+
+<p>Most fields are empty by default, only <code>appname</code> is prefilled with the name of the current
+executable.
+The appname is used by some desktop environments to group notifications.</p>
+</div><h4 id='method.appname' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.appname' class='fnname'>appname</a>(&amp;mut self, appname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Overwrite the appname field used for Notification.</p>
+</div><h4 id='method.summary' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.summary' class='fnname'>summary</a>(&amp;mut self, summary: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Set the <code>summary</code>.</p>
+
+<p>Often acts as title of the notification. For more elaborate content use the <code>body</code> field.</p>
+</div><h4 id='method.body' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.body' class='fnname'>body</a>(&amp;mut self, body: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Set the content of the <code>body</code> field.</p>
+
+<p>Multiline textual content of the notification.
+Each line should be treated as a paragraph.
+Simple html markup should be supported, depending on the server implementation.</p>
+</div><h4 id='method.icon' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.icon' class='fnname'>icon</a>(&amp;mut self, icon: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Set the <code>icon</code> field.</p>
+
+<p>You can use commom icon names here, usually those in <code>/usr/share/icons</code>
+can all be used.
+You can also use an absolute path to file.</p>
+</div><h4 id='method.hint' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.hint' class='fnname'>hint</a>(&amp;mut self, hint: <a class='enum' href='../notify_rust/enum.NotificationHint.html' title='notify_rust::NotificationHint'>NotificationHint</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<h4 id='method.timeout' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.timeout' class='fnname'>timeout</a>(&amp;mut self, timeout: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Set the <code>timeout</code>.</p>
+
+<p>This sets the time (in miliseconds) from the time the notification is displayed until it is
+closed again by the Notification Server.
+According to <a href="https://developer.gnome.org/notification-spec/">specification</a>
+-1 will leave the timeout to be set by the server and
+0 will cause the notification never to expire.</p>
+</div><h4 id='method.actions' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.actions' class='fnname'>actions</a>(&amp;mut self, actions: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Set <code>actions</code>.</p>
+
+<p>To quote <a href="http://www.galago-project.org/specs/notification/0.9/x408.html#command-notify">http://www.galago-project.org/specs/notification/0.9/x408.html#command-notify</a></p>
+
+<blockquote>
+<p>Actions are sent over as a list of pairs.
+ Each even element in the list (starting at index 0) represents the identifier for the action.
+ Each odd element in the list is the localized string that will be displayed to the user.</p>
+</blockquote>
+
+<p>There is nothing fancy going on here yet.
+<strong>Carefull! This replaces the internal list of actions!</strong></p>
+</div><h4 id='method.action' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.action' class='fnname'>action</a>(&amp;mut self, identifier: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, label: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Add an action.</p>
+
+<p>This adds a single action to the internal list of actions.</p>
+</div><h4 id='method.finalize' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.finalize' class='fnname'>finalize</a>(&amp;self) -&gt; <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Finalizes a Notification.</p>
+
+<p>Part of the builder pattern, returns a complete copy of the built notification.</p>
+</div><h4 id='method.show' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.show' class='fnname'>show</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
+<div class='docblock'><p>Sends Notification to D-Bus.</p>
+
+<p>Returns id from D-Bus.</p>
+</div><h4 id='method.show_debug' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.show_debug' class='fnname'>show_debug</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
+<div class='docblock'><p>Wraps show() but prints notification to stdout.</p>
+</div><h4 id='method.get_capabilities' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_capabilities' class='fnname'>get_capabilities</a>() -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code></h4>
+<div class='docblock'><p>Get list of all capabilities of the running Notification Server.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "notify_rust";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>
