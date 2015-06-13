@@ -43,7 +43,7 @@
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>dbus</a>::<wbr><a class='struct' href=''>PropHandler</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-9510' href='../src/dbus/prop.rs.html#83-86'>[src]</a></span></h1>
+        </span><a id='src-9571' href='../src/dbus/prop.rs.html#83-86'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct PropHandler&lt;'a&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p>Wrapper around Props that keeps a map of fetched properties.</p>
@@ -53,13 +53,7 @@
 <h4 id='method.map' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.map' class='fnname'>map</a>(&amp;self) -&gt; &amp;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>&gt;</code></h4>
 <h4 id='method.get' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get' class='fnname'>get</a>(&amp;mut self, propname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;&amp;<a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
 <h4 id='method.set' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;mut self, propname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, value: <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.handle_message' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.handle_message' class='fnname'>handle_message</a>(&amp;mut self, msg: &amp;mut <a class='struct' href='../dbus/struct.Message.html' title='dbus::Message'>Message</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;&gt;</code></h4>
-<div class='docblock'><p>Deprecated: Broken. Use objpath instead
-Return value:
-  None =&gt; not handled,
-  Some(Err(())) =&gt; message reply send failed,
-  Some(Ok()) =&gt; message reply send ok</p>
-</div></div></section>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

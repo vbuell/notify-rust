@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/hendrik/.cargo/registry/src/github.com-1ecc6299db9ec823/dbus-0.0.9/src/message.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/hendrik/.cargo/registry/src/github.com-0a35038f75765ae4/dbus-0.1.0/src/message.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>message.rs.html -- source</title>
@@ -607,11 +607,31 @@
 <span id="565">565</span>
 <span id="566">566</span>
 <span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>borrow</span>::<span class='ident'>Cow</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::{<span class='ident'>fmt</span>, <span class='ident'>mem</span>, <span class='ident'>ptr</span>};
 <span class='kw'>use</span> <span class='ident'>super</span>::{<span class='ident'>ffi</span>, <span class='ident'>Error</span>, <span class='ident'>MessageType</span>, <span class='ident'>TypeSig</span>, <span class='ident'>libc</span>, <span class='ident'>to_c_str</span>, <span class='ident'>c_str_to_slice</span>, <span class='ident'>init_dbus</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>os</span>::<span class='ident'>unix</span>::<span class='ident'>io</span>::{<span class='ident'>RawFd</span>, <span class='ident'>AsRawFd</span>};
+
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>,<span class='ident'>Copy</span>,<span class='ident'>Clone</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>ArrayError</span> {
+    <span class='ident'>EmptyArray</span>,
+    <span class='ident'>DifferentElementTypes</span>,
+}
 
 <span class='kw'>fn</span> <span class='ident'>new_dbus_message_iter</span>() <span class='op'>-&gt;</span> <span class='ident'>ffi</span>::<span class='ident'>DBusMessageIter</span> {
     <span class='ident'>ffi</span>::<span class='ident'>DBusMessageIter</span> {
@@ -646,7 +666,7 @@
 
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>into_fd</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>RawFd</span> {
         <span class='kw'>let</span> <span class='ident'>s</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>fd</span>;
-        <span class='kw'>unsafe</span> { ::<span class='ident'>std</span>::<span class='ident'>mem</span>::<span class='ident'>forget</span>(<span class='self'>self</span>); }
+        ::<span class='ident'>std</span>::<span class='ident'>mem</span>::<span class='ident'>forget</span>(<span class='self'>self</span>);
         <span class='ident'>s</span>
     }
 }
@@ -813,11 +833,19 @@
     }
 
     <span class='doccomment'>/// Creates an MessageItem::Array from a list of MessageItems.</span>
-    <span class='doccomment'>/// Note: Will panic if the vec is empty or if there are different types in the array</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new_array</span>(<span class='ident'>v</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>MessageItem</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>MessageItem</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new_array</span>(<span class='ident'>v</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>MessageItem</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>MessageItem</span>,<span class='ident'>ArrayError</span><span class='op'>&gt;</span> {
+        <span class='kw'>if</span> <span class='ident'>v</span>.<span class='ident'>len</span>() <span class='op'>==</span> <span class='number'>0</span> {
+            <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ArrayError</span>::<span class='ident'>EmptyArray</span>);
+        }
+
         <span class='kw'>let</span> <span class='ident'>t</span> <span class='op'>=</span> <span class='ident'>v</span>[<span class='number'>0</span>].<span class='ident'>type_sig</span>();
-        <span class='kw'>for</span> <span class='ident'>i</span> <span class='kw'>in</span> <span class='kw-2'>&amp;</span><span class='ident'>v</span> { <span class='macro'>debug_assert</span><span class='macro'>!</span>(<span class='ident'>i</span>.<span class='ident'>type_sig</span>() <span class='op'>==</span> <span class='ident'>t</span>) };
-        <span class='ident'>MessageItem</span>::<span class='ident'>Array</span>(<span class='ident'>v</span>, <span class='ident'>t</span>)
+        <span class='kw'>for</span> <span class='ident'>i</span> <span class='kw'>in</span> <span class='kw-2'>&amp;</span><span class='ident'>v</span> {
+            <span class='kw'>if</span> <span class='ident'>i</span>.<span class='ident'>type_sig</span>() <span class='op'>!=</span> <span class='ident'>t</span> {
+                <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>ArrayError</span>::<span class='ident'>DifferentElementTypes</span>);
+            }
+        }
+
+        <span class='prelude-val'>Ok</span>(<span class='ident'>MessageItem</span>::<span class='ident'>Array</span>(<span class='ident'>v</span>, <span class='ident'>t</span>))
     }
 
     <span class='kw'>fn</span> <span class='ident'>from_iter</span>(<span class='ident'>i</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>ffi</span>::<span class='ident'>DBusMessageIter</span>) <span class='op'>-&gt;</span> <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>MessageItem</span><span class='op'>&gt;</span> {
@@ -1096,14 +1124,14 @@
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>new_method_call</span>(<span class='kw-2'>&amp;</span><span class='op'>*</span><span class='ident'>c</span>.<span class='ident'>unique_name</span>(), <span class='string'>&quot;/hello&quot;</span>, <span class='string'>&quot;com.example.hello&quot;</span>, <span class='string'>&quot;Hello&quot;</span>).<span class='ident'>unwrap</span>();
         <span class='ident'>m</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span>[
             <span class='ident'>MessageItem</span>::<span class='ident'>UInt16</span>(<span class='number'>2000</span>),
-            <span class='ident'>MessageItem</span>::<span class='ident'>new_array</span>(<span class='macro'>vec</span><span class='macro'>!</span>(<span class='ident'>MessageItem</span>::<span class='ident'>Byte</span>(<span class='number'>129</span>))),
+            <span class='ident'>MessageItem</span>::<span class='ident'>new_array</span>(<span class='macro'>vec</span><span class='macro'>!</span>(<span class='ident'>MessageItem</span>::<span class='ident'>Byte</span>(<span class='number'>129</span>))).<span class='ident'>unwrap</span>(),
             <span class='ident'>MessageItem</span>::<span class='ident'>UInt64</span>(<span class='number'>987654321</span>),
             <span class='ident'>MessageItem</span>::<span class='ident'>Int32</span>(<span class='op'>-</span><span class='number'>1</span>),
             <span class='ident'>MessageItem</span>::<span class='ident'>Str</span>(<span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;Hello world&quot;</span>)),
             <span class='ident'>MessageItem</span>::<span class='ident'>Double</span>(<span class='op'>-</span><span class='number'>3.14</span>),
             <span class='ident'>MessageItem</span>::<span class='ident'>new_array</span>(<span class='macro'>vec</span><span class='macro'>!</span>(
                 <span class='ident'>MessageItem</span>::<span class='ident'>DictEntry</span>(<span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>MessageItem</span>::<span class='ident'>UInt32</span>(<span class='number'>123543</span>)), <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>MessageItem</span>::<span class='ident'>Bool</span>(<span class='boolval'>true</span>)))
-            ))
+            )).<span class='ident'>unwrap</span>()
         ]);
         <span class='kw'>let</span> <span class='ident'>sending</span> <span class='op'>=</span> <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>m</span>.<span class='ident'>get_items</span>());
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Sending {}&quot;</span>, <span class='ident'>sending</span>);
@@ -1148,9 +1176,9 @@
                     <span class='op'>|</span>(<span class='ident'>iface</span>, <span class='ident'>props</span>)<span class='op'>|</span> <span class='ident'>MessageItem</span>::<span class='ident'>DictEntry</span>(<span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>MessageItem</span>::<span class='ident'>Str</span>(<span class='ident'>iface</span>.<span class='ident'>to_string</span>())), <span class='ident'>Box</span>::<span class='ident'>new</span>(
                         <span class='ident'>MessageItem</span>::<span class='ident'>from_dict</span>::<span class='op'>&lt;</span>(),_<span class='op'>&gt;</span>(<span class='ident'>props</span>.<span class='ident'>iter</span>().<span class='ident'>map</span>(<span class='op'>|</span>(<span class='ident'>name</span>, <span class='ident'>value</span>)<span class='op'>|</span> <span class='prelude-val'>Ok</span>((<span class='ident'>name</span>.<span class='ident'>to_string</span>(), <span class='ident'>value</span>.<span class='ident'>clone</span>())))).<span class='ident'>unwrap</span>()
                     ))
-                ).<span class='ident'>collect</span>())
+                ).<span class='ident'>collect</span>()).<span class='ident'>unwrap</span>()
             ))
-        ).<span class='ident'>collect</span>());
+        ).<span class='ident'>collect</span>()).<span class='ident'>unwrap</span>();
         <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;As MessageItem: {:?}&quot;</span>, <span class='ident'>m</span>);
         <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>m</span>.<span class='ident'>type_sig</span>(), <span class='string'>&quot;a{oa{sa{sv}}}&quot;</span>);
 

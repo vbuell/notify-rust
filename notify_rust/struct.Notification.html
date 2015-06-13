@@ -43,7 +43,7 @@
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>notify_rust</a>::<wbr><a class='struct' href=''>Notification</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-416' href='../src/notify_rust/lib.rs.html#60-77'>[src]</a></span></h1>
+        </span><a id='src-430' href='../src/notify_rust/lib.rs.html#68-85'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Notification {
     pub appname: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
     pub summary: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
@@ -59,7 +59,7 @@
 <table><tr><td id='structfield.appname'><a class='stability Unmarked' title='No stability level'></a><code>appname</code></td><td><div class='docblock'><p>Filled by default with executable name.</p>
 </div></td></tr><tr><td id='structfield.summary'><a class='stability Unmarked' title='No stability level'></a><code>summary</code></td><td><div class='docblock'><p>Single line to summarize the content.</p>
 </div></td></tr><tr><td id='structfield.body'><a class='stability Unmarked' title='No stability level'></a><code>body</code></td><td><div class='docblock'><p>Multiple lines possible, may support simple markup,
-checkout <code>Notification::get_capabilities()</code> -&gt; <code>body-markup</code> and <code>body-hyperlinks</code>.</p>
+checkout <code>get_capabilities()</code> -&gt; <code>body-markup</code> and <code>body-hyperlinks</code>.</p>
 </div></td></tr><tr><td id='structfield.icon'><a class='stability Unmarked' title='No stability level'></a><code>icon</code></td><td><div class='docblock'><p>Use a file:// URI or a name in an icon theme, must be compliant freedesktop.org.</p>
 </div></td></tr><tr><td id='structfield.hints'><a class='stability Unmarked' title='No stability level'></a><code>hints</code></td><td><div class='docblock'><p>Checkout <code>NotificationHint</code></p>
 </div></td></tr><tr><td id='structfield.actions'><a class='stability Unmarked' title='No stability level'></a><code>actions</code></td><td><div class='docblock'><p>See <code>Notification::actions()</code> and <code>Notification::action()</code></p>
@@ -140,8 +140,6 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
 <p>Returns id from D-Bus.</p>
 </div><h4 id='method.show_debug' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.show_debug' class='fnname'>show_debug</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
 <div class='docblock'><p>Wraps show() but prints notification to stdout.</p>
-</div><h4 id='method.get_capabilities' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_capabilities' class='fnname'>get_capabilities</a>() -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;</code></h4>
-<div class='docblock'><p>Get list of all capabilities of the running Notification Server.</p>
 </div></div></section>
     <section id='search' class="content hidden"></section>
 
