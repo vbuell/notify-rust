@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `server` mod in crate `notify_rust`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, server">
+    <meta name="description" content="API documentation for the Rust `wait_for_action_signal` fn in crate `notify_rust`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, wait_for_action_signal">
 
-    <title>notify_rust::server - Rust</title>
+    <title>notify_rust::wait_for_action_signal - Rust</title>
 
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
 
     
     
@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='../index.html'>notify_rust</a></p><script>window.sidebarCurrent = {name: 'server', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+        <p class='location'><a href='index.html'>notify_rust</a></p><script>window.sidebarCurrent = {name: 'wait_for_action_signal', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </section>
 
     <nav class="sub">
@@ -40,24 +40,14 @@
         </form>
     </nav>
 
-    <section id='main' class="content mod">
-<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>notify_rust</a>::<wbr><a class='mod' href=''>server</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+    <section id='main' class="content fn">
+<h1 class='fqn'><span class='in-band'>Function <a href='index.html'>notify_rust</a>::<wbr><a class='fn' href=''>wait_for_action_signal</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-14' href='../../src/notify_rust/server.rs.html#1-94'>[src]</a></span></h1>
-<div class='docblock'><p><strong>Experimental</strong> server taking the place of your Desktop Environments Notification Server.</p>
+        </span><a id='src-3318' href='../src/notify_rust/lib.rs.html#438-473'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn wait_for_action_signal&lt;F&gt;(id: <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, func: F) <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</span></pre><div class='docblock'><p>Listens for the <code>ActionInvoked(UInt32, String)</code> Signal.</p>
 
-<p>This is not nearly meant for anything but testing, as it only prints notifications to stdout.
-It does not respond properly either yet.</p>
-
-<p>This server will not replace an already running notification server.</p>
-</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.NotificationServer.html'
-                               title='notify_rust::server::NotificationServer'>NotificationServer</a></td>
-                        <td class='docblock short'></td>
-                    </tr>
-                </table></section>
+<p>No need to use this, check out <code>Notification::show_and_wait_for_action(FnOnce(action:&amp;str))</code></p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -96,13 +86,13 @@ It does not respond properly either yet.</p>
     
 
     <script>
-        window.rootPath = "../../";
+        window.rootPath = "../";
         window.currentCrate = "notify_rust";
         window.playgroundUrl = "";
     </script>
-    <script src="../../jquery.js"></script>
-    <script src="../../main.js"></script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
     
-    <script async src="../../search-index.js"></script>
+    <script async src="../search-index.js"></script>
 </body>
 </html>

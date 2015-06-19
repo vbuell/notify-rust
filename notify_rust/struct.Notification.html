@@ -43,7 +43,7 @@
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>notify_rust</a>::<wbr><a class='struct' href=''>Notification</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-430' href='../src/notify_rust/lib.rs.html#68-85'>[src]</a></span></h1>
+        </span><a id='src-431' href='../src/notify_rust/lib.rs.html#68-85'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Notification {
     pub appname: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
     pub summary: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
@@ -140,6 +140,28 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
 <p>Returns id from D-Bus.</p>
 </div><h4 id='method.show_debug' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.show_debug' class='fnname'>show_debug</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
 <div class='docblock'><p>Wraps show() but prints notification to stdout.</p>
+</div><h4 id='method.show_and_wait_for_action' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.show_and_wait_for_action' class='fnname'>show_and_wait_for_action</a>&lt;F&gt;(&amp;self, invokation_closure: F) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a> <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</span></code></h4>
+<div class='docblock'><p>Wraps show() and blocks.</p>
+
+<p>This method takes a closure that takes an action name.</p>
+
+<h2 id="example" class='section-header'><a
+                           href="#example">Example</a></h2><pre id='rust-example-rendered' class='rust '>
+<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
+<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span> <span class='kw'>as</span> <span class='ident'>Hint</span>;
+<span class='ident'>Notification</span>::<span class='ident'>new</span>()
+    .<span class='ident'>summary</span>(<span class='string'>&quot;click me&quot;</span>)
+    .<span class='ident'>action</span>(<span class='string'>&quot;default&quot;</span>, <span class='string'>&quot;default&quot;</span>)
+    .<span class='ident'>action</span>(<span class='string'>&quot;clicked&quot;</span>, <span class='string'>&quot;click here&quot;</span>)
+    .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Resident</span>(<span class='boolval'>true</span>))
+    .<span class='ident'>show_and_wait_for_action</span>({<span class='op'>|</span><span class='ident'>action</span><span class='op'>|</span>
+        <span class='kw'>match</span> <span class='ident'>action</span> {
+            <span class='string'>&quot;default&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;so boring&quot;</span>)},
+            <span class='string'>&quot;clicked&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;that was correct&quot;</span>)},
+            _ <span class='op'>=&gt;</span> ()
+        }
+    });
+</pre>
 </div></div></section>
     <section id='search' class="content hidden"></section>
 
