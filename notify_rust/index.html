@@ -41,15 +41,17 @@
     </nav>
 
     <section id='main' class="content mod">
-<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>notify_rust</a><wbr></span><span class='out-of-band'><a href='stability.html'>[stability]</a> <span id='render-detail'>
-            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-0' href='../src/notify_rust/lib.rs.html#1-473'>[src]</a></span></h1>
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>notify_rust</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-0' class='srclink' href='../src/notify_rust/lib.rs.html#1-491' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Desktop Notifications for Rust.</p>
 
 <p>Desktop notifications are popup messages generated to notify the user of certain events.</p>
 
 <h1 id="examples" class='section-header'><a
-                           href="#examples">Examples</a></h1><pre id='rust-example-rendered' class='rust '>
+                           href="#examples">Examples</a></h1><pre class='rust rust-example-rendered'>
 <span class='comment'>// Example 1</span>
 <span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
 <span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span> <span class='kw'>as</span> <span class='ident'>Hint</span>;
@@ -76,74 +78,92 @@
     .<span class='ident'>body</span>(<span class='string'>&quot;This has nothing to do with emails.\nIt should not go away untill you acknoledge it.&quot;</span>)
     .<span class='ident'>icon</span>(<span class='string'>&quot;thunderbird&quot;</span>)
     .<span class='ident'>appname</span>(<span class='string'>&quot;thunderbird&quot;</span>)
-    .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Category</span>(<span class='string'>&quot;email&quot;</span>.<span class='ident'>to_string</span>()))
+    .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Category</span>(<span class='string'>&quot;email&quot;</span>.<span class='ident'>to_owned</span>()))
     .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Resident</span>(<span class='boolval'>true</span>))
     .<span class='ident'>show</span>();
 </pre>
 </div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='mod' href='server/index.html'
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='server/index.html'
                                title='notify_rust::server'>server</a></td>
-                        <td class='docblock short'><p><strong>Experimental</strong> server taking the place of your Desktop Environments Notification Server.</p>
-</td>
+                        <td class='docblock short'>
+                             <p><strong>Experimental</strong> server taking the place of your Desktop Environments Notification Server.</p>
+
+                        </td>
                     </tr>
                 </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.Notification.html'
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Notification.html'
                                title='notify_rust::Notification'>Notification</a></td>
-                        <td class='docblock short'><p>Desktop Notification.</p>
-</td>
+                        <td class='docblock short'>
+                             <p>Desktop Notification.</p>
+
+                        </td>
                     </tr>
                 
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.ServerInformation.html'
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.ServerInformation.html'
                                title='notify_rust::ServerInformation'>ServerInformation</a></td>
-                        <td class='docblock short'><p>Return value of <code>get_server_information()</code>.</p>
-</td>
+                        <td class='docblock short'>
+                             <p>Return value of <code>get_server_information()</code>.</p>
+
+                        </td>
                     </tr>
                 </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table>
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='enum' href='enum.NotificationHint.html'
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.NotificationHint.html'
                                title='notify_rust::NotificationHint'>NotificationHint</a></td>
-                        <td class='docblock short'></td>
+                        <td class='docblock short'>
+                             
+                        </td>
                     </tr>
                 
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='enum' href='enum.NotificationUrgency.html'
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.NotificationUrgency.html'
                                title='notify_rust::NotificationUrgency'>NotificationUrgency</a></td>
-                        <td class='docblock short'></td>
+                        <td class='docblock short'>
+                             
+                        </td>
                     </tr>
                 </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
 <table>
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.close_notification.html'
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.close_notification.html'
                                title='notify_rust::close_notification'>close_notification</a></td>
-                        <td class='docblock short'><p>Close a Notification given by id.</p>
-</td>
+                        <td class='docblock short'>
+                             <p>Close a Notification given by id.</p>
+
+                        </td>
                     </tr>
                 
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.get_capabilities.html'
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_capabilities.html'
                                title='notify_rust::get_capabilities'>get_capabilities</a></td>
-                        <td class='docblock short'><p>Get list of all capabilities of the running Notification Server.</p>
-</td>
+                        <td class='docblock short'>
+                             <p>Get list of all capabilities of the running Notification Server.</p>
+
+                        </td>
                     </tr>
                 
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.get_server_information.html'
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.get_server_information.html'
                                title='notify_rust::get_server_information'>get_server_information</a></td>
-                        <td class='docblock short'><p>Returns a struct containing ServerInformation.</p>
-</td>
+                        <td class='docblock short'>
+                             <p>Returns a struct containing ServerInformation.</p>
+
+                        </td>
                     </tr>
                 
-                    <tr>
-                        <td><a class='stability Unmarked' title='No stability level'></a><a class='fn' href='fn.wait_for_action_signal.html'
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.wait_for_action_signal.html'
                                title='notify_rust::wait_for_action_signal'>wait_for_action_signal</a></td>
-                        <td class='docblock short'><p>Listens for the <code>ActionInvoked(UInt32, String)</code> Signal.</p>
-</td>
+                        <td class='docblock short'>
+                             <p>Listens for the <code>ActionInvoked(UInt32, String)</code> Signal.</p>
+
+                        </td>
                     </tr>
                 </table></section>
     <section id='search' class="content hidden"></section>
@@ -177,6 +197,10 @@
                 <code>struct</code>, <code>enum</code>,
                 <code>trait</code>, <code>typedef</code> (or
                 <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
             </p>
         </div>
     </div>

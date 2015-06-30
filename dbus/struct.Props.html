@@ -41,16 +41,18 @@
     </nav>
 
     <section id='main' class="content struct">
-<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>dbus</a>::<wbr><a class='struct' href=''>Props</a><wbr></span><span class='out-of-band'><span id='render-detail'>
-            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-9016' href='../src/dbus/prop.rs.html#5-11'>[src]</a></span></h1>
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>dbus</a>::<wbr><a class='struct' href=''>Props</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-9308' class='srclink' href='../src/dbus/prop.rs.html#5-11' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Props&lt;'a&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p>Client side properties - get and set properties on a remote application.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;'a&gt; <a class='struct' href='../dbus/struct.Props.html' title='dbus::Props'>Props</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new' class='fnname'>new</a>(conn: &amp;'a <a class='struct' href='../dbus/struct.Connection.html' title='dbus::Connection'>Connection</a>, name: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, path: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, interface: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, timeout_ms: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a class='struct' href='../dbus/struct.Props.html' title='dbus::Props'>Props</a>&lt;'a&gt;</code></h4>
-<h4 id='method.get' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get' class='fnname'>get</a>(&amp;self, propname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.set' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;self, propname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, value: <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.get_all' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_all' class='fnname'>get_all</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>&gt;, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;'a&gt; <a class='struct' href='../dbus/struct.Props.html' title='dbus::Props'>Props</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(conn: &amp;'a <a class='struct' href='../dbus/struct.Connection.html' title='dbus::Connection'>Connection</a>, name: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, path: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, interface: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, timeout_ms: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a class='struct' href='../dbus/struct.Props.html' title='dbus::Props'>Props</a>&lt;'a&gt;</code></h4>
+<h4 id='method.get' class='method'><code>fn <a href='#method.get' class='fnname'>get</a>(&amp;self, propname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.set' class='method'><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;self, propname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, value: <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.get_all' class='method'><code>fn <a href='#method.get_all' class='fnname'>get_all</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>&gt;, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
@@ -83,6 +85,10 @@
                 <code>struct</code>, <code>enum</code>,
                 <code>trait</code>, <code>typedef</code> (or
                 <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
             </p>
         </div>
     </div>
