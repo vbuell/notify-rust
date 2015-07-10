@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `src/lib.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/hendrik/code/rust/notify-rust/src/lib.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>lib.rs.html -- source</title>
@@ -531,6 +531,17 @@
 <span id="489">489</span>
 <span id="490">490</span>
 <span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Desktop Notifications for Rust.</span>
 <span class='doccomment'>//!</span>
@@ -538,7 +549,7 @@
 <span class='doccomment'>//!</span>
 <span class='doccomment'>//! # Examples</span>
 <span class='doccomment'>//! ```</span>
-<span class='doccomment'>//! // Example 1</span>
+<span class='doccomment'>//! // Example 1 (Simple Notification)</span>
 <span class='doccomment'>//! use notify_rust::Notification;</span>
 <span class='doccomment'>//! use notify_rust::NotificationHint as Hint;</span>
 <span class='doccomment'>//!</span>
@@ -546,28 +557,38 @@
 <span class='doccomment'>//!     .summary(&quot;Firefox News&quot;)</span>
 <span class='doccomment'>//!     .body(&quot;This will almost look like a real firefox notification.&quot;)</span>
 <span class='doccomment'>//!     .icon(&quot;firefox&quot;)</span>
-<span class='doccomment'>//!     .timeout(6000) //miliseconds</span>
+<span class='doccomment'>//!     .timeout(6000) //milliseconds</span>
 <span class='doccomment'>//!     .show();</span>
 <span class='doccomment'>//!</span>
-<span class='doccomment'>//! // Example 2</span>
-<span class='doccomment'>//! Notification::new()</span>
-<span class='doccomment'>//!     .summary(&quot;Another notification with actions&quot;)</span>
-<span class='doccomment'>//!     .body(&quot;Here each one was added separately.&quot;)</span>
-<span class='doccomment'>//!     .icon(&quot;firefox&quot;)</span>
-<span class='doccomment'>//!     .action(&quot;action0&quot;, &quot;Press me please&quot;)</span>
-<span class='doccomment'>//!     .action(&quot;action1&quot;, &quot;firefox&quot;)</span>
-<span class='doccomment'>//!     .show();</span>
-<span class='doccomment'>//!</span>
-<span class='doccomment'>//! // Example 3</span>
+<span class='doccomment'>//! // Example 2 (Persistent Notification)</span>
 <span class='doccomment'>//! Notification::new()</span>
 <span class='doccomment'>//!     .summary(&quot;Category:email&quot;)</span>
 <span class='doccomment'>//!     .body(&quot;This has nothing to do with emails.\nIt should not go away untill you acknoledge it.&quot;)</span>
 <span class='doccomment'>//!     .icon(&quot;thunderbird&quot;)</span>
 <span class='doccomment'>//!     .appname(&quot;thunderbird&quot;)</span>
 <span class='doccomment'>//!     .hint(Hint::Category(&quot;email&quot;.to_owned()))</span>
-<span class='doccomment'>//!     .hint(Hint::Resident(true))</span>
+<span class='doccomment'>//!     .hint(Hint::Resident(true)) // this is not supported by all implementations</span>
+<span class='doccomment'>//!     .timeout(0) // this however is</span>
 <span class='doccomment'>//!     .show();</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! // Example 3 (Ask the user to do something)</span>
+<span class='doccomment'>//! Notification::new()</span>
+<span class='doccomment'>//!     .summary(&quot;click me&quot;)</span>
+<span class='doccomment'>//!     .action(&quot;default&quot;, &quot;default&quot;)</span>
+<span class='doccomment'>//!     .action(&quot;clicked&quot;, &quot;click here&quot;)</span>
+<span class='doccomment'>//!     .hint(Hint::Resident(true))</span>
+<span class='doccomment'>//!     .show_and_wait_for_action({|action|</span>
+<span class='doccomment'>//!         match action {</span>
+<span class='doccomment'>//!             &quot;default&quot; =&gt; {println!(&quot;so boring&quot;)},</span>
+<span class='doccomment'>//!             &quot;clicked&quot; =&gt; {println!(&quot;that was correct&quot;)},</span>
+<span class='doccomment'>//!             &quot;__closed&quot; =&gt; {println!(&quot;the notification was closed&quot;)}, // here &quot;__closed&quot; is a hardcoded keyword</span>
+<span class='doccomment'>//!             _ =&gt; ()</span>
+<span class='doccomment'>//!         }</span>
+<span class='doccomment'>//!     });</span>
+<span class='doccomment'>//!</span>
 <span class='doccomment'>//! ```</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! more [examples](https://github.com/hoodie/notify-rust/tree/master/examples) in the repository.</span>
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>env</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>HashSet</span>;
@@ -631,6 +652,7 @@
     <span class='comment'>//ImageData(iiibiiay),</span>
     <span class='ident'>ImagePath</span>(<span class='ident'>String</span>),
     <span class='comment'>//IconData(iiibiiay),</span>
+    <span class='doccomment'>/// This does not work on all servers, however timeout=0 will do the job</span>
     <span class='ident'>Resident</span>(<span class='ident'>bool</span>),
     <span class='ident'>SoundFile</span>(<span class='ident'>String</span>),
     <span class='ident'>SoundName</span>(<span class='ident'>String</span>),
@@ -784,7 +806,7 @@
 
     <span class='kw'>fn</span> <span class='ident'>pack_hints</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>MessageItem</span>
     {
-        <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>hints</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='number'>0</span> {
+        <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>hints</span>.<span class='ident'>is_empty</span>() {
             <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>hints</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[];
             <span class='kw'>for</span> <span class='ident'>hint</span> <span class='kw'>in</span> <span class='self'>self</span>.<span class='ident'>hints</span>.<span class='ident'>iter</span>(){
                 <span class='kw'>let</span> <span class='ident'>entry</span>:(<span class='ident'>String</span>,<span class='ident'>String</span>) <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>hint</span> {
@@ -821,7 +843,7 @@
 
     <span class='kw'>fn</span> <span class='ident'>pack_actions</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>MessageItem</span>
     {
-        <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>actions</span>.<span class='ident'>len</span>() <span class='op'>&gt;</span> <span class='number'>0</span> {
+        <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>actions</span>.<span class='ident'>is_empty</span>() {
             <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>actions</span> <span class='op'>=</span> <span class='macro'>vec</span><span class='macro'>!</span>[];
             <span class='kw'>for</span> <span class='ident'>action</span> <span class='kw'>in</span> <span class='self'>self</span>.<span class='ident'>actions</span>.<span class='ident'>iter</span>()
             {
@@ -874,7 +896,7 @@
                               <span class='self'>self</span>.<span class='ident'>pack_hints</span>(),         <span class='comment'>// hints</span>
            <span class='ident'>MessageItem</span>::<span class='ident'>Int32</span>(<span class='self'>self</span>.<span class='ident'>timeout</span>)              <span class='comment'>// timeout</span>
            ]);
-        <span class='kw'>let</span> <span class='ident'>connection</span> <span class='op'>=</span> <span class='ident'>Connection</span>::<span class='ident'>get_private</span>(<span class='ident'>BusType</span>::<span class='ident'>Session</span>).<span class='ident'>unwrap</span>();
+        <span class='kw'>let</span> <span class='ident'>connection</span> <span class='op'>=</span> <span class='ident'>Connection</span>::<span class='ident'>get_private</span>(<span class='ident'>BusType</span>::<span class='ident'>Session</span>).<span class='ident'>unwrap</span>(); <span class='comment'>// test this against missing server</span>
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='ident'>connection</span>.<span class='ident'>send_with_reply_and_block</span>(<span class='ident'>message</span>, <span class='number'>2000</span>).<span class='ident'>unwrap</span>();
         <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='kw-2'>&amp;</span><span class='ident'>MessageItem</span>::<span class='ident'>UInt32</span>(<span class='kw-2'>ref</span> <span class='ident'>id</span>)) <span class='op'>=</span> <span class='ident'>r</span>.<span class='ident'>get_items</span>().<span class='ident'>get</span>(<span class='number'>0</span>) {
             <span class='self'>self</span>.<span class='ident'>id</span> <span class='op'>=</span> <span class='op'>*</span><span class='ident'>id</span>;
