@@ -34,7 +34,7 @@
             <div class="search-container">
                 <input class="search-input" name="search"
                        autocomplete="off"
-                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
                        type="search">
             </div>
         </form>
@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-8738' class='srclink' href='../src/dbus/message.rs.html#346-348' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-9566' class='srclink' href='../src/dbus/message.rs.html#430-432' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Message {
     // some fields omitted
 }</pre><div class='docblock'><p>A D-Bus message. A message contains some headers (e g sender and destination address)
@@ -54,7 +54,7 @@ and a list of MessageItems.</p>
 <h4 id='method.new_signal' class='method'><code>fn <a href='#method.new_signal' class='fnname'>new_signal</a>(path: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, iface: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, method: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../dbus/struct.Message.html' title='dbus::Message'>Message</a>&gt;</code></h4>
 <h4 id='method.new_method_return' class='method'><code>fn <a href='#method.new_method_return' class='fnname'>new_method_return</a>(m: &amp;<a class='struct' href='../dbus/struct.Message.html' title='dbus::Message'>Message</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../dbus/struct.Message.html' title='dbus::Message'>Message</a>&gt;</code></h4>
 <h4 id='method.new_error' class='method'><code>fn <a href='#method.new_error' class='fnname'>new_error</a>(m: &amp;<a class='struct' href='../dbus/struct.Message.html' title='dbus::Message'>Message</a>, error_name: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, error_message: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../dbus/struct.Message.html' title='dbus::Message'>Message</a>&gt;</code></h4>
-<h4 id='method.get_items' class='method'><code>fn <a href='#method.get_items' class='fnname'>get_items</a>(&amp;mut self) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>&gt;</code></h4>
+<h4 id='method.get_items' class='method'><code>fn <a href='#method.get_items' class='fnname'>get_items</a>(&amp;self) -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>&gt;</code></h4>
 <h4 id='method.get_serial' class='method'><code>fn <a href='#method.get_serial' class='fnname'>get_serial</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
 <h4 id='method.append_items' class='method'><code>fn <a href='#method.append_items' class='fnname'>append_items</a>(&amp;mut self, v: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>)</code></h4>
 <h4 id='method.msg_type' class='method'><code>fn <a href='#method.msg_type' class='fnname'>msg_type</a>(&amp;self) -&gt; <a class='enum' href='../dbus/enum.MessageType.html' title='dbus::MessageType'>MessageType</a></code></h4>
@@ -69,37 +69,44 @@ and a list of MessageItems.</p>
     <section class="footer"></section>
 
     <div id="help" class="hidden">
-        <div class="shortcuts">
-            <h1>Keyboard shortcuts</h1>
-            <dl>
-                <dt>?</dt>
-                <dd>Show this help dialog</dd>
-                <dt>S</dt>
-                <dd>Focus the search field</dd>
-                <dt>&larrb;</dt>
-                <dd>Move up in search results</dd>
-                <dt>&rarrb;</dt>
-                <dd>Move down in search results</dd>
-                <dt>&#9166;</dt>
-                <dd>Go to active search result</dd>
-            </dl>
-        </div>
-        <div class="infos">
-            <h1>Search tricks</h1>
-            <p>
-                Prefix searches with a type followed by a colon (e.g.
-                <code>fn:</code>) to restrict the search to a given type.
-            </p>
-            <p>
-                Accepted types are: <code>fn</code>, <code>mod</code>,
-                <code>struct</code>, <code>enum</code>,
-                <code>trait</code>, <code>typedef</code> (or
-                <code>tdef</code>).
-            </p>
-            <p>
-                Search functions by type signature (e.g.
-                <code>vec -> usize</code>)
-            </p>
+        <div>
+            <div class="shortcuts">
+                <h1>Keyboard Shortcuts</h1>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h1>Search Tricks</h1>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
         </div>
     </div>
 

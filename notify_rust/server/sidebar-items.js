@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["NotificationServer",""]]});
+initSidebarItems({"constant":[["VERSION",""]],"struct":[["NotificationServer",""]]});

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/hendrik/.multirust/toolchains/beta/cargo/registry/src/github.com-0a35038f75765ae4/dbus-0.1.0/src/objpath.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/hendrik/.multirust/toolchains/nightly/cargo/registry/src/github.com-0a35038f75765ae4/dbus-0.1.1/src/objpath.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>objpath.rs.html -- source</title>
@@ -34,7 +34,7 @@
             <div class="search-container">
                 <input class="search-input" name="search"
                        autocomplete="off"
-                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
                        type="search">
             </div>
         </form>
@@ -532,6 +532,8 @@
 <span id="490">490</span>
 <span id="491">491</span>
 <span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>super</span>::{<span class='ident'>Connection</span>, <span class='ident'>Message</span>, <span class='ident'>MessageItem</span>, <span class='ident'>Error</span>, <span class='ident'>TypeSig</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>BTreeMap</span>;
@@ -571,12 +573,12 @@
 
 <span class='doccomment'>/// A boxed closure for dynamic dispatch. It is called when the method is </span>
 <span class='doccomment'>/// called by a remote application.</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>MethodHandler</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>Fn</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Message</span>) <span class='op'>-&gt;</span> <span class='ident'>MethodResult</span> <span class='op'>+</span> <span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>;
+<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>MethodHandler</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>Box</span><span class='op'>&lt;</span><span class='ident'>FnMut</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Message</span>) <span class='op'>-&gt;</span> <span class='ident'>MethodResult</span> <span class='op'>+</span> <span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>;
 
 <span class='kw'>struct</span> <span class='ident'>IMethod</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
     <span class='ident'>in_args</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>Argument</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;&gt;</span>,
     <span class='ident'>out_args</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>Argument</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;&gt;</span>,
-    <span class='ident'>cb</span>: <span class='ident'>Rc</span><span class='op'>&lt;</span><span class='ident'>MethodHandler</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;&gt;</span>,
+    <span class='ident'>cb</span>: <span class='ident'>Rc</span><span class='op'>&lt;</span><span class='ident'>RefCell</span><span class='op'>&lt;</span><span class='ident'>MethodHandler</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>,
 }
 
 <span class='doccomment'>/// a method that can be called from another application</span>
@@ -589,7 +591,7 @@
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>ToString</span><span class='op'>&gt;</span>(<span class='ident'>name</span>: <span class='ident'>N</span>, <span class='ident'>in_args</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>Argument</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;&gt;</span>,
             <span class='ident'>out_args</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>Argument</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;&gt;</span>, <span class='ident'>cb</span>: <span class='ident'>MethodHandler</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Method</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
         <span class='ident'>Method</span> { <span class='ident'>name</span>: <span class='ident'>name</span>.<span class='ident'>to_string</span>(), <span class='ident'>i</span>: <span class='ident'>IMethod</span> {
-            <span class='ident'>in_args</span>: <span class='ident'>in_args</span>, <span class='ident'>out_args</span>: <span class='ident'>out_args</span>, <span class='ident'>cb</span>: <span class='ident'>Rc</span>::<span class='ident'>new</span>(<span class='ident'>cb</span>) }
+            <span class='ident'>in_args</span>: <span class='ident'>in_args</span>, <span class='ident'>out_args</span>: <span class='ident'>out_args</span>, <span class='ident'>cb</span>: <span class='ident'>Rc</span>::<span class='ident'>new</span>(<span class='ident'>RefCell</span>::<span class='ident'>new</span>(<span class='ident'>cb</span>)) }
         }
     }
 }
@@ -805,16 +807,12 @@
 
 <span class='kw'>fn</span> <span class='ident'>parse_msg_str</span>(<span class='ident'>a</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>MessageItem</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>str</span>,(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>, <span class='ident'>String</span>)<span class='op'>&gt;</span> {
     <span class='kw'>let</span> <span class='ident'>name</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>a</span>.<span class='ident'>ok_or_else</span>(<span class='op'>||</span> (<span class='string'>&quot;org.freedesktop.DBus.Error.InvalidArgs&quot;</span>, <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;Invalid argument {:?}&quot;</span>, <span class='ident'>a</span>))));
-    <span class='kw'>if</span> <span class='kw'>let</span> <span class='kw-2'>&amp;</span><span class='ident'>MessageItem</span>::<span class='ident'>Str</span>(<span class='kw-2'>ref</span> <span class='ident'>s</span>) <span class='op'>=</span> <span class='ident'>name</span> {
-        <span class='prelude-val'>Ok</span>(<span class='kw-2'>&amp;</span><span class='ident'>s</span>)
-    } <span class='kw'>else</span> { <span class='prelude-val'>Err</span>((<span class='string'>&quot;org.freedesktop.DBus.Error.InvalidArgs&quot;</span>, <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;Invalid argument {:?}&quot;</span>, <span class='ident'>a</span>))) }
+    <span class='ident'>name</span>.<span class='ident'>inner</span>().<span class='ident'>map_err</span>(<span class='op'>|</span>_<span class='op'>|</span> (<span class='string'>&quot;org.freedesktop.DBus.Error.InvalidArgs&quot;</span>, <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;Invalid argument {:?}&quot;</span>, <span class='ident'>a</span>)))
 }
 
 <span class='kw'>fn</span> <span class='ident'>parse_msg_variant</span>(<span class='ident'>a</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>MessageItem</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='kw-2'>&amp;</span><span class='ident'>MessageItem</span>,(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;static</span> <span class='ident'>str</span>, <span class='ident'>String</span>)<span class='op'>&gt;</span> {
     <span class='kw'>let</span> <span class='ident'>name</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>a</span>.<span class='ident'>ok_or_else</span>(<span class='op'>||</span> (<span class='string'>&quot;org.freedesktop.DBus.Error.InvalidArgs&quot;</span>, <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;Invalid argument {:?}&quot;</span>, <span class='ident'>a</span>))));
-    <span class='kw'>if</span> <span class='kw'>let</span> <span class='kw-2'>&amp;</span><span class='ident'>MessageItem</span>::<span class='ident'>Variant</span>(<span class='kw-2'>ref</span> <span class='ident'>s</span>) <span class='op'>=</span> <span class='ident'>name</span> {
-        <span class='prelude-val'>Ok</span>(<span class='kw-2'>&amp;</span><span class='ident'>s</span>)
-    } <span class='kw'>else</span> { <span class='prelude-val'>Err</span>((<span class='string'>&quot;org.freedesktop.DBus.Error.InvalidArgs&quot;</span>, <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;Invalid argument {:?}&quot;</span>, <span class='ident'>a</span>))) }
+    <span class='ident'>name</span>.<span class='ident'>inner</span>().<span class='ident'>map_err</span>(<span class='op'>|</span>_<span class='op'>|</span> (<span class='string'>&quot;org.freedesktop.DBus.Error.InvalidArgs&quot;</span>, <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;Invalid argument {:?}&quot;</span>, <span class='ident'>a</span>)))
 }
 
 <span class='kw'>impl</span> <span class='ident'>PropertyROHandler</span> <span class='kw'>for</span> <span class='ident'>MessageItem</span> {
@@ -905,7 +903,13 @@
             }
         };
 
-        <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>match</span> (<span class='op'>*</span><span class='ident'>method</span>)(<span class='ident'>msg</span>) {
+        <span class='kw'>let</span> <span class='ident'>r</span> <span class='op'>=</span> {
+            <span class='comment'>// Now call it</span>
+            <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>method</span>.<span class='ident'>borrow_mut</span>();
+            (<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='op'>*</span><span class='ident'>m</span>)(<span class='ident'>msg</span>)
+        };
+
+        <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='ident'>r</span> {
             <span class='prelude-val'>Ok</span>(<span class='ident'>r</span>) <span class='op'>=&gt;</span> {
                 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>z</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>new_method_return</span>(<span class='ident'>msg</span>).<span class='ident'>unwrap</span>();
                 <span class='ident'>z</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span><span class='ident'>r</span>);
@@ -941,9 +945,9 @@
     <span class='kw'>let</span> <span class='ident'>thread</span> <span class='op'>=</span> ::<span class='ident'>std</span>::<span class='ident'>thread</span>::<span class='ident'>spawn</span>(<span class='kw'>move</span> <span class='op'>||</span> {
         <span class='kw'>let</span> <span class='ident'>c</span> <span class='op'>=</span> <span class='ident'>Connection</span>::<span class='ident'>get_private</span>(<span class='ident'>super</span>::<span class='ident'>BusType</span>::<span class='ident'>Session</span>).<span class='ident'>unwrap</span>();
         <span class='kw'>let</span> <span class='ident'>pr</span> <span class='op'>=</span> <span class='ident'>super</span>::<span class='ident'>Props</span>::<span class='ident'>new</span>(<span class='kw-2'>&amp;</span><span class='ident'>c</span>, <span class='kw-2'>&amp;</span><span class='ident'>busname</span>, <span class='string'>&quot;/echo&quot;</span>, <span class='string'>&quot;com.example.echo&quot;</span>, <span class='number'>5000</span>);
-        <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>pr</span>.<span class='ident'>get</span>(<span class='string'>&quot;EchoCount&quot;</span>).<span class='ident'>unwrap</span>(), <span class='ident'>super</span>::<span class='ident'>MessageItem</span>::<span class='ident'>Int32</span>(<span class='number'>7</span>));
+        <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>pr</span>.<span class='ident'>get</span>(<span class='string'>&quot;EchoCount&quot;</span>).<span class='ident'>unwrap</span>(), <span class='number'>7i32</span>.<span class='ident'>into</span>());
         <span class='kw'>let</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>pr</span>.<span class='ident'>get_all</span>().<span class='ident'>unwrap</span>();
-        <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>m</span>.<span class='ident'>get</span>(<span class='string'>&quot;EchoCount&quot;</span>).<span class='ident'>unwrap</span>(), <span class='kw-2'>&amp;</span><span class='ident'>super</span>::<span class='ident'>MessageItem</span>::<span class='ident'>Int32</span>(<span class='number'>7</span>));
+        <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>m</span>.<span class='ident'>get</span>(<span class='string'>&quot;EchoCount&quot;</span>).<span class='ident'>unwrap</span>(), <span class='kw-2'>&amp;</span><span class='number'>7i32</span>.<span class='ident'>into</span>());
     });
 
     <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>i</span> <span class='op'>=</span> <span class='number'>0</span>;
@@ -1032,37 +1036,44 @@ fn test_refcount() {
     <section class="footer"></section>
 
     <div id="help" class="hidden">
-        <div class="shortcuts">
-            <h1>Keyboard shortcuts</h1>
-            <dl>
-                <dt>?</dt>
-                <dd>Show this help dialog</dd>
-                <dt>S</dt>
-                <dd>Focus the search field</dd>
-                <dt>&larrb;</dt>
-                <dd>Move up in search results</dd>
-                <dt>&rarrb;</dt>
-                <dd>Move down in search results</dd>
-                <dt>&#9166;</dt>
-                <dd>Go to active search result</dd>
-            </dl>
-        </div>
-        <div class="infos">
-            <h1>Search tricks</h1>
-            <p>
-                Prefix searches with a type followed by a colon (e.g.
-                <code>fn:</code>) to restrict the search to a given type.
-            </p>
-            <p>
-                Accepted types are: <code>fn</code>, <code>mod</code>,
-                <code>struct</code>, <code>enum</code>,
-                <code>trait</code>, <code>typedef</code> (or
-                <code>tdef</code>).
-            </p>
-            <p>
-                Search functions by type signature (e.g.
-                <code>vec -> usize</code>)
-            </p>
+        <div>
+            <div class="shortcuts">
+                <h1>Keyboard Shortcuts</h1>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h1>Search Tricks</h1>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
         </div>
     </div>
 

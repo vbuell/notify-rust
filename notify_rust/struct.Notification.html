@@ -34,7 +34,7 @@
             <div class="search-container">
                 <input class="search-input" name="search"
                        autocomplete="off"
-                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
                        type="search">
             </div>
         </form>
@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-431' class='srclink' href='../src/notify_rust/lib.rs.html#78-96' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-715' class='srclink' href='../src/notify_rust/lib.rs.html#78-97' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Notification {
     pub appname: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
     pub summary: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
@@ -54,8 +54,9 @@
     pub hints: <a class='struct' href='http://doc.rust-lang.org/nightly/std/collections/hash/set/struct.HashSet.html' title='std::collections::hash::set::HashSet'>HashSet</a>&lt;<a class='enum' href='../notify_rust/enum.NotificationHint.html' title='notify_rust::NotificationHint'>NotificationHint</a>&gt;,
     pub actions: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
     pub timeout: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>,
+    pub urgency: <a class='enum' href='../notify_rust/enum.NotificationUrgency.html' title='notify_rust::NotificationUrgency'>NotificationUrgency</a>,
     pub id: <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
-}</pre><div class='docblock'><p>Desktop Notification.</p>
+}</pre><div class='docblock'><p>Desktop notification.</p>
 
 <p>A desktop notification is configured via builder pattern, before it is launched with <code>show()</code>.</p>
 </div><h2 class='fields'>Fields</h2>
@@ -75,6 +76,7 @@ checkout <code>get_capabilities()</code> -&gt; <code>body-markup</code> and <cod
 </div></td></tr><tr class='stab '>
                                   <td id='structfield.timeout'><code>timeout</code></td><td><div class='docblock'><p>Lifetime of the Notification in ms. Often not respected by server, sorry.</p>
 </div></td></tr><tr class='stab '>
+                                  <td id='structfield.urgency'><code>urgency</code></td><td></td></tr><tr class='stab '>
                                   <td id='structfield.id'><code>id</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Constructs a new Notification.</p>
 
@@ -114,8 +116,7 @@ Hints must be of type NotificationHint.</p>
     .<span class='ident'>appname</span>(<span class='string'>&quot;thunderbird&quot;</span>)
     .<span class='ident'>hint</span>(<span class='ident'>NotificationHint</span>::<span class='ident'>Category</span>(<span class='string'>&quot;email&quot;</span>.<span class='ident'>to_owned</span>()))
     .<span class='ident'>hint</span>(<span class='ident'>NotificationHint</span>::<span class='ident'>Resident</span>(<span class='boolval'>true</span>))
-    .<span class='ident'>show</span>();
-</pre>
+    .<span class='ident'>show</span>();</pre>
 </div><h4 id='method.timeout' class='method'><code>fn <a href='#method.timeout' class='fnname'>timeout</a>(&amp;mut self, timeout: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Set the <code>timeout</code>.</p>
 
@@ -124,6 +125,10 @@ closed again by the Notification Server.
 According to <a href="https://developer.gnome.org/notification-spec/">specification</a>
 -1 will leave the timeout to be set by the server and
 0 will cause the notification never to expire.</p>
+</div><h4 id='method.urgency' class='method'><code>fn <a href='#method.urgency' class='fnname'>urgency</a>(&amp;mut self, urgency: <a class='enum' href='../notify_rust/enum.NotificationUrgency.html' title='notify_rust::NotificationUrgency'>NotificationUrgency</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<div class='docblock'><p>Set the <code>urgency</code>.</p>
+
+<p>Pick between Medium, Low and High.</p>
 </div><h4 id='method.actions' class='method'><code>fn <a href='#method.actions' class='fnname'>actions</a>(&amp;mut self, actions: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Set <code>actions</code>.</p>
 
@@ -145,11 +150,10 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
 <div class='docblock'><p>Finalizes a Notification.</p>
 
 <p>Part of the builder pattern, returns a complete copy of the built notification.</p>
-</div><h4 id='method.show' class='method'><code>fn <a href='#method.show' class='fnname'>show</a>(&amp;mut self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
+</div><h4 id='method.show' class='method'><code>fn <a href='#method.show' class='fnname'>show</a>(&amp;mut self) -&gt; <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a></code></h4>
 <div class='docblock'><p>Sends Notification to D-Bus.</p>
 
-<p>Returns notification id, which can be used to close it using
-<code>notify_rust::close_notification</code>.</p>
+<p>Returns a handle to a notification</p>
 </div><h4 id='method.update' class='method'><code>fn <a href='#method.update' class='fnname'>update</a>(&amp;mut self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
 <div class='docblock'><p>Sends Notification to D-Bus, again.</p>
 
@@ -157,9 +161,9 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
 notification server! On plasma5 or instance, you should also change the appname, so the old
 message is really replaced and not just amended. Xfce behaves well, all others have not
 been tested by the developer.</p>
-</div><h4 id='method.show_debug' class='method'><code>fn <a href='#method.show_debug' class='fnname'>show_debug</a>(&amp;mut self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></h4>
+</div><h4 id='method.show_debug' class='method'><code>fn <a href='#method.show_debug' class='fnname'>show_debug</a>(&amp;mut self) -&gt; <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a></code></h4>
 <div class='docblock'><p>Wraps show() but prints notification to stdout.</p>
-</div><h4 id='method.show_and_wait_for_action' class='method'><code>fn <a href='#method.show_and_wait_for_action' class='fnname'>show_and_wait_for_action</a>&lt;F&gt;(&amp;mut self, invokation_closure: F) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a> <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</span></code></h4>
+</div><h4 id='method.show_and_wait_for_action' class='method'><code>fn <a href='#method.show_and_wait_for_action' class='fnname'>show_and_wait_for_action</a>&lt;F&gt;(&amp;mut self, invokation_closure: F) -&gt; <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a> <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</span></code></h4>
 <div class='docblock'><p>Wraps show() and blocks.</p>
 
 <p>This method takes a closure that takes an action name.</p>
@@ -179,45 +183,51 @@ been tested by the developer.</p>
             <span class='string'>&quot;clicked&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;that was correct&quot;</span>)},
             _ <span class='op'>=&gt;</span> ()
         }
-    });
-</pre>
+    });</pre>
 </div></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
     <div id="help" class="hidden">
-        <div class="shortcuts">
-            <h1>Keyboard shortcuts</h1>
-            <dl>
-                <dt>?</dt>
-                <dd>Show this help dialog</dd>
-                <dt>S</dt>
-                <dd>Focus the search field</dd>
-                <dt>&larrb;</dt>
-                <dd>Move up in search results</dd>
-                <dt>&rarrb;</dt>
-                <dd>Move down in search results</dd>
-                <dt>&#9166;</dt>
-                <dd>Go to active search result</dd>
-            </dl>
-        </div>
-        <div class="infos">
-            <h1>Search tricks</h1>
-            <p>
-                Prefix searches with a type followed by a colon (e.g.
-                <code>fn:</code>) to restrict the search to a given type.
-            </p>
-            <p>
-                Accepted types are: <code>fn</code>, <code>mod</code>,
-                <code>struct</code>, <code>enum</code>,
-                <code>trait</code>, <code>typedef</code> (or
-                <code>tdef</code>).
-            </p>
-            <p>
-                Search functions by type signature (e.g.
-                <code>vec -> usize</code>)
-            </p>
+        <div>
+            <div class="shortcuts">
+                <h1>Keyboard Shortcuts</h1>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h1>Search Tricks</h1>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
         </div>
     </div>
 
