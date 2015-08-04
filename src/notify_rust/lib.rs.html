@@ -580,6 +580,17 @@
 <span id="538">538</span>
 <span id="539">539</span>
 <span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Desktop Notifications for Rust.</span>
 <span class='doccomment'>//!</span>
@@ -615,9 +626,10 @@
 <span class='doccomment'>//!     .action(&quot;default&quot;, &quot;default&quot;)</span>
 <span class='doccomment'>//!     .action(&quot;clicked&quot;, &quot;click here&quot;)</span>
 <span class='doccomment'>//!     .hint(Hint::Resident(true))</span>
-<span class='doccomment'>//!     .show_and_wait_for_action({|action|</span>
+<span class='doccomment'>//!     .show()</span>
+<span class='doccomment'>//!     .wait_for_action({|action|</span>
 <span class='doccomment'>//!         match action {</span>
-<span class='doccomment'>//!             &quot;default&quot; =&gt; {println!(&quot;so boring&quot;)},</span>
+<span class='doccomment'>//!             &quot;default&quot; =&gt; {println!(&quot;you clicked \&quot;default\&quot;&quot;)},</span>
 <span class='doccomment'>//!             &quot;clicked&quot; =&gt; {println!(&quot;that was correct&quot;)},</span>
 <span class='doccomment'>//!             &quot;__closed&quot; =&gt; {println!(&quot;the notification was closed&quot;)}, // here &quot;__closed&quot; is a hardcoded keyword</span>
 <span class='doccomment'>//!             _ =&gt; ()</span>
@@ -631,6 +643,7 @@
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>env</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>HashSet</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>borrow</span>::<span class='ident'>Cow</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::{<span class='ident'>Deref</span>,<span class='ident'>DerefMut</span>};
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>dbus</span>;
 <span class='kw'>use</span> <span class='ident'>dbus</span>::{<span class='ident'>Connection</span>, <span class='ident'>ConnectionItem</span>, <span class='ident'>BusType</span>, <span class='ident'>Message</span>, <span class='ident'>MessageItem</span>};
@@ -658,6 +671,7 @@
 <span class='doccomment'>/// Desktop notification.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// A desktop notification is configured via builder pattern, before it is launched with `show()`.</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Notification</span>
 {
     <span class='doccomment'>/// Filled by default with executable name.</span>
@@ -675,8 +689,7 @@
     <span class='kw'>pub</span> <span class='ident'>actions</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>String</span><span class='op'>&gt;</span>,
     <span class='doccomment'>/// Lifetime of the Notification in ms. Often not respected by server, sorry.</span>
     <span class='kw'>pub</span> <span class='ident'>timeout</span>: <span class='ident'>i32</span>,
-    <span class='kw'>pub</span> <span class='ident'>urgency</span>: <span class='ident'>NotificationUrgency</span>,
-    <span class='kw'>pub</span> <span class='ident'>id</span>: <span class='ident'>u32</span>
+    <span class='kw'>pub</span> <span class='ident'>urgency</span>: <span class='ident'>NotificationUrgency</span>
 }
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Eq</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Hash</span>, <span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>Debug</span>)]</span>
@@ -720,8 +733,7 @@
             <span class='ident'>hints</span>:    <span class='ident'>HashSet</span>::<span class='ident'>new</span>(),
             <span class='ident'>actions</span>:  <span class='ident'>Vec</span>::<span class='ident'>new</span>(),
             <span class='ident'>timeout</span>:  <span class='op'>-</span><span class='number'>1</span>,
-            <span class='ident'>urgency</span>:  <span class='ident'>NotificationUrgency</span>::<span class='ident'>Medium</span>,
-            <span class='ident'>id</span>:  <span class='number'>0</span>
+            <span class='ident'>urgency</span>:  <span class='ident'>NotificationUrgency</span>::<span class='ident'>Medium</span>
         }
     }
 
@@ -850,7 +862,6 @@
             <span class='ident'>actions</span>:  <span class='self'>self</span>.<span class='ident'>actions</span>.<span class='ident'>clone</span>(),
             <span class='ident'>timeout</span>:  <span class='self'>self</span>.<span class='ident'>timeout</span>.<span class='ident'>clone</span>(),
             <span class='ident'>urgency</span>:  <span class='self'>self</span>.<span class='ident'>urgency</span>.<span class='ident'>clone</span>(),
-            <span class='ident'>id</span>:       <span class='self'>self</span>.<span class='ident'>id</span>.<span class='ident'>clone</span>(),
         }
     }
 
@@ -911,22 +922,12 @@
     <span class='doccomment'>/// Returns a handle to a notification</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>show</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>NotificationHandle</span>
     {
-        <span class='self'>self</span>.<span class='ident'>_show</span>(<span class='number'>0</span>)
+        <span class='kw'>let</span> <span class='ident'>connection</span> <span class='op'>=</span> <span class='ident'>Connection</span>::<span class='ident'>get_private</span>(<span class='ident'>BusType</span>::<span class='ident'>Session</span>).<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Unable to connect to Bus.&quot;</span>);
+        <span class='kw'>let</span> <span class='ident'>id</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>_show</span>(<span class='number'>0</span>, <span class='kw-2'>&amp;</span><span class='ident'>connection</span>);
+        <span class='ident'>NotificationHandle</span>::<span class='ident'>new</span>(<span class='ident'>id</span>, <span class='ident'>connection</span>, <span class='self'>self</span>.<span class='ident'>clone</span>())
     }
 
-    <span class='doccomment'>/// Sends Notification to D-Bus, again.</span>
-    <span class='doccomment'>///</span>
-    <span class='doccomment'>/// Here the original notification is replaced. Watch out for different implementations of the</span>
-    <span class='doccomment'>/// notification server! On plasma5 or instance, you should also change the appname, so the old</span>
-    <span class='doccomment'>/// message is really replaced and not just amended. Xfce behaves well, all others have not</span>
-    <span class='doccomment'>/// been tested by the developer.</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>update</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span>
-    {
-        <span class='kw'>let</span> <span class='ident'>id</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>id</span>.<span class='ident'>clone</span>();
-        <span class='self'>self</span>.<span class='ident'>_show</span>(<span class='ident'>id</span>).<span class='ident'>id</span>
-    }
-
-    <span class='kw'>fn</span> <span class='ident'>_show</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>id</span>:<span class='ident'>u32</span>) <span class='op'>-&gt;</span> <span class='ident'>NotificationHandle</span>
+    <span class='kw'>fn</span> <span class='ident'>_show</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>id</span>:<span class='ident'>u32</span>, <span class='ident'>connection</span>: <span class='kw-2'>&amp;</span><span class='ident'>Connection</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span>
     {
         <span class='comment'>//TODO catch this</span>
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>message</span> <span class='op'>=</span> <span class='ident'>build_message</span>(<span class='string'>&quot;Notify&quot;</span>);
@@ -941,14 +942,12 @@
                              <span class='self'>self</span>.<span class='ident'>pack_hints</span>().<span class='ident'>into</span>(),       <span class='comment'>// hints</span>
                              <span class='self'>self</span>.<span class='ident'>timeout</span>.<span class='ident'>into</span>()             <span class='comment'>// timeout</span>
            ]);
-        <span class='kw'>let</span> <span class='ident'>connection</span> <span class='op'>=</span> <span class='ident'>Connection</span>::<span class='ident'>get_private</span>(<span class='ident'>BusType</span>::<span class='ident'>Session</span>).<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Unable to connect to Bus.&quot;</span>);
         <span class='kw'>let</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='ident'>connection</span>.<span class='ident'>send_with_reply_and_block</span>(<span class='ident'>message</span>, <span class='number'>2000</span>).<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Unable to send message Notify.&quot;</span>);
         <span class='kw'>if</span> <span class='kw'>let</span> <span class='prelude-val'>Some</span>(<span class='kw-2'>&amp;</span><span class='ident'>MessageItem</span>::<span class='ident'>UInt32</span>(<span class='kw-2'>ref</span> <span class='ident'>id</span>)) <span class='op'>=</span> <span class='ident'>r</span>.<span class='ident'>get_items</span>().<span class='ident'>get</span>(<span class='number'>0</span>) {
-            <span class='self'>self</span>.<span class='ident'>id</span> <span class='op'>=</span> <span class='op'>*</span><span class='ident'>id</span>;
-            <span class='kw'>return</span> <span class='ident'>NotificationHandle</span>::<span class='ident'>new</span>(<span class='op'>*</span><span class='ident'>id</span>, <span class='ident'>connection</span>)
+            <span class='op'>*</span><span class='ident'>id</span>
         }
         <span class='kw'>else</span> {
-           <span class='kw'>return</span> <span class='ident'>NotificationHandle</span>::<span class='ident'>new</span>(<span class='number'>0</span>, <span class='ident'>connection</span>)
+           <span class='kw'>return</span> <span class='number'>0</span>
         }
     }
 
@@ -964,33 +963,6 @@
             <span class='ident'>icon</span>    <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>icon</span>,);
         <span class='self'>self</span>.<span class='ident'>show</span>()
     }
-
-    <span class='doccomment'>/// Wraps show() and blocks.</span>
-    <span class='doccomment'>///</span>
-    <span class='doccomment'>/// This method takes a closure that takes an action name.</span>
-    <span class='doccomment'>/// ## Example</span>
-    <span class='doccomment'>/// ```</span>
-    <span class='doccomment'>/// use notify_rust::Notification;</span>
-    <span class='doccomment'>/// use notify_rust::NotificationHint as Hint;</span>
-    <span class='doccomment'>/// Notification::new()</span>
-    <span class='doccomment'>///     .summary(&quot;click me&quot;)</span>
-    <span class='doccomment'>///     .action(&quot;default&quot;, &quot;default&quot;)</span>
-    <span class='doccomment'>///     .action(&quot;clicked&quot;, &quot;click here&quot;)</span>
-    <span class='doccomment'>///     .hint(Hint::Resident(true))</span>
-    <span class='doccomment'>///     .show_and_wait_for_action({|action|</span>
-    <span class='doccomment'>///         match action {</span>
-    <span class='doccomment'>///             &quot;default&quot; =&gt; {println!(&quot;so boring&quot;)},</span>
-    <span class='doccomment'>///             &quot;clicked&quot; =&gt; {println!(&quot;that was correct&quot;)},</span>
-    <span class='doccomment'>///             _ =&gt; ()</span>
-    <span class='doccomment'>///         }</span>
-    <span class='doccomment'>///     });</span>
-    <span class='doccomment'>/// ```</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>show_and_wait_for_action</span><span class='op'>&lt;</span><span class='ident'>F</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>invokation_closure</span>:<span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='ident'>NotificationHandle</span> <span class='kw'>where</span> <span class='ident'>F</span>:<span class='ident'>FnOnce</span>(<span class='kw-2'>&amp;</span><span class='ident'>str</span>)
-    {
-        <span class='kw'>let</span> <span class='ident'>handle</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>show</span>();
-        <span class='ident'>wait_for_action_signal</span>(<span class='kw-2'>&amp;</span><span class='ident'>handle</span>.<span class='ident'>connection</span>, <span class='ident'>handle</span>.<span class='ident'>id</span>, <span class='ident'>invokation_closure</span>);
-        <span class='ident'>handle</span>
-    }
 }
 
 <span class='doccomment'>/// A handle to a shown notification.</span>
@@ -999,18 +971,79 @@
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>NotificationHandle</span>
 {
     <span class='ident'>id</span>: <span class='ident'>u32</span>,
-    <span class='ident'>connection</span>: <span class='ident'>Connection</span>
+    <span class='ident'>connection</span>: <span class='ident'>Connection</span>,
+    <span class='ident'>notification</span>: <span class='ident'>Notification</span>
 }
 
 <span class='kw'>impl</span> <span class='ident'>NotificationHandle</span>
 {
-    <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>id</span>: <span class='ident'>u32</span>, <span class='ident'>connection</span>: <span class='ident'>Connection</span>) <span class='op'>-&gt;</span> <span class='ident'>NotificationHandle</span> {
+    <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>id</span>: <span class='ident'>u32</span>, <span class='ident'>connection</span>: <span class='ident'>Connection</span>, <span class='ident'>notification</span>: <span class='ident'>Notification</span>) <span class='op'>-&gt;</span> <span class='ident'>NotificationHandle</span>
+    {
         <span class='ident'>NotificationHandle</span> {
             <span class='ident'>id</span>: <span class='ident'>id</span>,
-            <span class='ident'>connection</span>: <span class='ident'>connection</span>
+            <span class='ident'>connection</span>: <span class='ident'>connection</span>,
+            <span class='ident'>notification</span>: <span class='ident'>notification</span>
         }
     }
-    <span class='comment'>// TODO: Move functionality like updating, closing, actions, etc. here</span>
+
+
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>wait_for_action</span><span class='op'>&lt;</span><span class='ident'>F</span><span class='op'>&gt;</span>(<span class='self'>self</span>, <span class='ident'>invokation_closure</span>:<span class='ident'>F</span>) <span class='kw'>where</span> <span class='ident'>F</span>:<span class='ident'>FnOnce</span>(<span class='kw-2'>&amp;</span><span class='ident'>str</span>)
+    {
+        <span class='ident'>wait_for_action_signal</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>connection</span>, <span class='self'>self</span>.<span class='ident'>id</span>, <span class='ident'>invokation_closure</span>);
+    }
+
+    <span class='doccomment'>/// Manually close the notification</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>close</span>(<span class='self'>self</span>)
+    {
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>message</span> <span class='op'>=</span> <span class='ident'>build_message</span>(<span class='string'>&quot;CloseNotification&quot;</span>);
+        <span class='ident'>message</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span>[ <span class='self'>self</span>.<span class='ident'>id</span>.<span class='ident'>into</span>() ]);
+        <span class='kw'>let</span> _ <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>connection</span>.<span class='ident'>send</span>(<span class='ident'>message</span>); <span class='comment'>// If closing fails there&#39;s nothing we could do anyway</span>
+    }
+
+    <span class='doccomment'>/// Replace the original notification with an updated version</span>
+    <span class='doccomment'>/// ## Example</span>
+    <span class='doccomment'>/// ```</span>
+    <span class='doccomment'>/// use notify_rust::Notification;</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// let mut notification = Notification::new()</span>
+    <span class='doccomment'>///     .summary(&quot;Foo&quot;)</span>
+    <span class='doccomment'>///     .body(&quot;foo demo&quot;)</span>
+    <span class='doccomment'>///     .show();</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// std::thread::sleep_ms(1_500);</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// notification</span>
+    <span class='doccomment'>///     .summary(&quot;Bar&quot;)</span>
+    <span class='doccomment'>///     .body(&quot;bar demo&quot;);</span>
+    <span class='doccomment'>///</span>
+    <span class='doccomment'>/// notification.update();</span>
+    <span class='doccomment'>/// ```</span>
+    <span class='doccomment'>/// Watch out for different implementations of the</span>
+    <span class='doccomment'>/// notification server! On plasma5 or instance, you should also change the appname, so the old</span>
+    <span class='doccomment'>/// message is really replaced and not just amended. Xfce behaves well, all others have not</span>
+    <span class='doccomment'>/// been tested by the developer.</span>
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>update</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
+        <span class='self'>self</span>.<span class='ident'>id</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>notification</span>.<span class='ident'>_show</span>(<span class='self'>self</span>.<span class='ident'>id</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>connection</span>);
+    }
+}
+
+<span class='comment'>// Required for DerefMut</span>
+<span class='kw'>impl</span> <span class='ident'>Deref</span> <span class='kw'>for</span> <span class='ident'>NotificationHandle</span>
+{
+    <span class='kw'>type</span> <span class='ident'>Target</span> <span class='op'>=</span> <span class='ident'>Notification</span>;
+    <span class='kw'>fn</span> <span class='ident'>deref</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='ident'>Notification</span>
+    {
+        <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>notification</span>
+    }
+}
+
+<span class='comment'>// Allow to easily modify notification properties</span>
+<span class='kw'>impl</span> <span class='ident'>DerefMut</span> <span class='kw'>for</span> <span class='ident'>NotificationHandle</span>
+{
+    <span class='kw'>fn</span> <span class='ident'>deref_mut</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>Notification</span>
+    {
+        <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>.<span class='ident'>notification</span>
+    }
 }
 
 <span class='doccomment'>/// Get list of all capabilities of the running notification server.</span>
@@ -1030,16 +1063,6 @@
         }
     }
     <span class='kw'>return</span> <span class='ident'>capabilities</span>;
-}
-
-<span class='doccomment'>/// Close a Notification given by id.</span>
-<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_must_use</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>close_notification</span>(<span class='ident'>id</span>:<span class='ident'>u32</span>)
-{
-    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>message</span> <span class='op'>=</span> <span class='ident'>build_message</span>(<span class='string'>&quot;CloseNotification&quot;</span>);
-    <span class='ident'>message</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span>[ <span class='ident'>id</span>.<span class='ident'>into</span>() ]);
-    <span class='kw'>let</span> <span class='ident'>connection</span> <span class='op'>=</span> <span class='ident'>Connection</span>::<span class='ident'>get_private</span>(<span class='ident'>BusType</span>::<span class='ident'>Session</span>).<span class='ident'>ok</span>().<span class='ident'>expect</span>(<span class='string'>&quot;Unable to connect to Bus.&quot;</span>);
-    <span class='ident'>connection</span>.<span class='ident'>send</span>(<span class='ident'>message</span>);
 }
 
 <span class='doccomment'>/// Return value of `get_server_information()`.</span>
@@ -1086,10 +1109,8 @@
 }
 
 
-<span class='doccomment'>/// Listens for the `ActionInvoked(UInt32, String)` signal.</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// No need to use this, check out `Notification::show_and_wait_for_action(FnOnce(action:&amp;str))`.</span>
-<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>wait_for_action_signal</span><span class='op'>&lt;</span><span class='ident'>F</span><span class='op'>&gt;</span>(<span class='ident'>connection</span>: <span class='kw-2'>&amp;</span><span class='ident'>Connection</span>, <span class='ident'>id</span>: <span class='ident'>u32</span>, <span class='ident'>func</span>: <span class='ident'>F</span>) <span class='kw'>where</span> <span class='ident'>F</span>: <span class='ident'>FnOnce</span>(<span class='kw-2'>&amp;</span><span class='ident'>str</span>)
+<span class='comment'>// Listens for the `ActionInvoked(UInt32, String)` signal.</span>
+<span class='kw'>fn</span> <span class='ident'>wait_for_action_signal</span><span class='op'>&lt;</span><span class='ident'>F</span><span class='op'>&gt;</span>(<span class='ident'>connection</span>: <span class='kw-2'>&amp;</span><span class='ident'>Connection</span>, <span class='ident'>id</span>: <span class='ident'>u32</span>, <span class='ident'>func</span>: <span class='ident'>F</span>) <span class='kw'>where</span> <span class='ident'>F</span>: <span class='ident'>FnOnce</span>(<span class='kw-2'>&amp;</span><span class='ident'>str</span>)
 {
     <span class='ident'>connection</span>.<span class='ident'>add_match</span>(<span class='string'>&quot;interface=&#39;org.freedesktop.Notifications&#39;,member=&#39;ActionInvoked&#39;&quot;</span>).<span class='ident'>unwrap</span>();
     <span class='ident'>connection</span>.<span class='ident'>add_match</span>(<span class='string'>&quot;interface=&#39;org.freedesktop.Notifications&#39;,member=&#39;NotificationClosed&#39;&quot;</span>).<span class='ident'>unwrap</span>();
@@ -1120,6 +1141,7 @@
     }
 
 }
+
 
 </pre>
 </section>

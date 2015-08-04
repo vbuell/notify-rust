@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/notify_rust/lib.rs.html#1-539' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/notify_rust/lib.rs.html#1-549' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Desktop Notifications for Rust.</p>
 
 <p>Desktop notifications are popup messages generated to notify the user of certain events.</p>
@@ -80,9 +80,10 @@
     .<span class='ident'>action</span>(<span class='string'>&quot;default&quot;</span>, <span class='string'>&quot;default&quot;</span>)
     .<span class='ident'>action</span>(<span class='string'>&quot;clicked&quot;</span>, <span class='string'>&quot;click here&quot;</span>)
     .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Resident</span>(<span class='boolval'>true</span>))
-    .<span class='ident'>show_and_wait_for_action</span>({<span class='op'>|</span><span class='ident'>action</span><span class='op'>|</span>
+    .<span class='ident'>show</span>()
+    .<span class='ident'>wait_for_action</span>({<span class='op'>|</span><span class='ident'>action</span><span class='op'>|</span>
         <span class='kw'>match</span> <span class='ident'>action</span> {
-            <span class='string'>&quot;default&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;so boring&quot;</span>)},
+            <span class='string'>&quot;default&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;you clicked \&quot;default\&quot;&quot;</span>)},
             <span class='string'>&quot;clicked&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;that was correct&quot;</span>)},
             <span class='string'>&quot;__closed&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;the notification was closed&quot;</span>)}, <span class='comment'>// here &quot;__closed&quot; is a hardcoded keyword</span>
             _ <span class='op'>=&gt;</span> ()
@@ -149,15 +150,6 @@
                 </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
 <table>
                     <tr class=' module-item'>
-                        <td><a class='fn' href='fn.close_notification.html'
-                               title='notify_rust::close_notification'>close_notification</a></td>
-                        <td class='docblock short'>
-                             <p>Close a Notification given by id.</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='fn' href='fn.get_capabilities.html'
                                title='notify_rust::get_capabilities'>get_capabilities</a></td>
                         <td class='docblock short'>
@@ -171,15 +163,6 @@
                                title='notify_rust::get_server_information'>get_server_information</a></td>
                         <td class='docblock short'>
                              <p>Returns a struct containing ServerInformation.</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='fn' href='fn.wait_for_action_signal.html'
-                               title='notify_rust::wait_for_action_signal'>wait_for_action_signal</a></td>
-                        <td class='docblock short'>
-                             <p>Listens for the <code>ActionInvoked(UInt32, String)</code> signal.</p>
 
                         </td>
                     </tr>
