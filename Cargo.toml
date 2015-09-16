@@ -13,4 +13,10 @@ keywords = ["desktop", "notification", "notify", "dbus", "libnotify"]
 readme = "README.md"
 
 [dependencies]
-dbus = "0.1.1"
+#dbus = "0.1"
+
+[dependencies.dbus]
+git = "https://github.com/diwic/dbus-rs/"
+
+[dev-dependencies]
+clippy = "*"
