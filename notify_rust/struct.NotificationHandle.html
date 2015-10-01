@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-3578' class='srclink' href='../src/notify_rust/lib.rs.html#377-382' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-3917' class='srclink' href='../src/notify_rust/lib.rs.html#335-340' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct NotificationHandle {
     // some fields omitted
 }</pre><div class='docblock'><p>A handle to a shown notification.</p>
@@ -64,7 +64,7 @@
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>notification</span> <span class='op'>=</span> <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;Foo&quot;</span>)
     .<span class='ident'>body</span>(<span class='string'>&quot;foo demo&quot;</span>)
-    .<span class='ident'>show</span>();
+    .<span class='ident'>show</span>().<span class='ident'>unwrap</span>();
 
 <span class='ident'>std</span>::<span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>1_500</span>);
 
@@ -93,10 +93,10 @@ Simple html markup should be supported, depending on the server implementation.<
 </div><h4 id='method.icon' class='method'><code>fn <a href='#method.icon' class='fnname'>icon</a>(&amp;mut self, icon: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Set the <code>icon</code> field.</p>
 
-<p>You can use commom icon names here, usually those in <code>/usr/share/icons</code>
+<p>You can use common icon names here, usually those in <code>/usr/share/icons</code>
 can all be used.
 You can also use an absolute path to file.</p>
-</div><h4 id='method.hint' class='method'><code>fn <a href='#method.hint' class='fnname'>hint</a>(&amp;mut self, hint: <a class='enum' href='../notify_rust/enum.NotificationHint.html' title='notify_rust::NotificationHint'>NotificationHint</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div><h4 id='method.hint' class='method'><code>fn <a href='#method.hint' class='fnname'>hint</a>(&amp;mut self, hint: <a class='enum' href='../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Adds a hint.</p>
 
 <p>This method will add a hint to the internal hint hashset.
@@ -145,15 +145,17 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
 <div class='docblock'><p>Finalizes a Notification.</p>
 
 <p>Part of the builder pattern, returns a complete copy of the built notification.</p>
-</div><h4 id='method.show' class='method'><code>fn <a href='#method.show' class='fnname'>show</a>(&amp;mut self) -&gt; <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a></code></h4>
+</div><h4 id='method.show' class='method'><code>fn <a href='#method.show' class='fnname'>show</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
 <div class='docblock'><p>Sends Notification to D-Bus.</p>
 
 <p>Returns a handle to a notification</p>
-</div><h4 id='method.show_debug' class='method'><code>fn <a href='#method.show_debug' class='fnname'>show_debug</a>(&amp;mut self) -&gt; <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a></code></h4>
+</div><h4 id='method.show_debug' class='method'><code>fn <a href='#method.show_debug' class='fnname'>show_debug</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
 <div class='docblock'><p>Wraps show() but prints notification to stdout.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Deref.html' title='core::ops::Deref'>Deref</a> for <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a></code></h3><div class='impl-items'><h4 id='assoc_type.Target' class='type'><code>type Target = <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Deref.html' title='core::ops::Deref'>Deref</a> for <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a></code></h3><div class='docblock'><p>Required for DerefMut</p>
+</div><div class='impl-items'><h4 id='assoc_type.Target' class='type'><code>type Target = <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <h4 id='method.deref' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Deref.html#method.deref' class='fnname'>deref</a>(&amp;self) -&gt; &amp;<a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html' title='core::ops::DerefMut'>DerefMut</a> for <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a></code></h3><div class='impl-items'><h4 id='method.deref_mut' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html#method.deref_mut' class='fnname'>deref_mut</a>(&amp;mut self) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html' title='core::ops::DerefMut'>DerefMut</a> for <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a></code></h3><div class='docblock'><p>Allow to easily modify notification properties</p>
+</div><div class='impl-items'><h4 id='method.deref_mut' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.DerefMut.html#method.deref_mut' class='fnname'>deref_mut</a>(&amp;mut self) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 

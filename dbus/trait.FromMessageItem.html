@@ -45,8 +45,8 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-9264' class='srclink' href='../src/dbus/message.rs.html#384-386' title='goto source code'>[src]</a></span></h1>
-<pre class='rust trait'>pub trait FromMessageItem&lt;'a&gt; {
+        </span><a id='src-9402' class='srclink' href='../src/dbus/message.rs.html#429-431' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait FromMessageItem&lt;'a&gt;: <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> {
     fn <a href='#tymethod.from' class='fnname'>from</a>(i: &amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;Self, <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;;
 }</pre><div class='docblock'><p>Helper trait for <code>MessageItem::inner()</code></p>
 </div>

@@ -45,14 +45,15 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/notify_rust/lib.rs.html#1-549' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/notify_rust/lib.rs.html#1-567' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Desktop Notifications for Rust.</p>
 
 <p>Desktop notifications are popup messages generated to notify the user of certain events.</p>
 
 <h1 id="examples" class='section-header'><a
-                           href="#examples">Examples</a></h1><pre class='rust rust-example-rendered'>
-<span class='comment'>// Example 1 (Simple Notification)</span>
+                           href="#examples">Examples</a></h1>
+<h2 id="example-1-(simple-notification)" class='section-header'><a
+                           href="#example-1-(simple-notification)">Example 1 (Simple Notification)</a></h2><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
 <span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span> <span class='kw'>as</span> <span class='ident'>Hint</span>;
 
@@ -61,9 +62,12 @@
     .<span class='ident'>body</span>(<span class='string'>&quot;This will almost look like a real firefox notification.&quot;</span>)
     .<span class='ident'>icon</span>(<span class='string'>&quot;firefox&quot;</span>)
     .<span class='ident'>timeout</span>(<span class='number'>6000</span>) <span class='comment'>//milliseconds</span>
-    .<span class='ident'>show</span>();
+    .<span class='ident'>show</span>().<span class='ident'>unwrap</span>();</pre>
 
-<span class='comment'>// Example 2 (Persistent Notification)</span>
+<h2 id="example-2-(persistent-notification)" class='section-header'><a
+                           href="#example-2-(persistent-notification)">Example 2 (Persistent Notification)</a></h2><pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
+<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span> <span class='kw'>as</span> <span class='ident'>Hint</span>;
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;Category:email&quot;</span>)
     .<span class='ident'>body</span>(<span class='string'>&quot;This has nothing to do with emails.\nIt should not go away untill you acknoledge it.&quot;</span>)
@@ -72,28 +76,46 @@
     .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Category</span>(<span class='string'>&quot;email&quot;</span>.<span class='ident'>to_owned</span>()))
     .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Resident</span>(<span class='boolval'>true</span>)) <span class='comment'>// this is not supported by all implementations</span>
     .<span class='ident'>timeout</span>(<span class='number'>0</span>) <span class='comment'>// this however is</span>
-    .<span class='ident'>show</span>();
+    .<span class='ident'>show</span>().<span class='ident'>unwrap</span>();</pre>
 
-<span class='comment'>// Example 3 (Ask the user to do something)</span>
+<p>Careful! There are no checks whether you use hints twice.
+It is possible to set <code>urgency=Low</code> AND <code>urgency=Critical</code>, in which case the behavior of the server is undefined.</p>
+
+<h2 id="example-3-(ask-the-user-to-do-something)" class='section-header'><a
+                           href="#example-3-(ask-the-user-to-do-something)">Example 3 (Ask the user to do something)</a></h2><pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
+<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span> <span class='kw'>as</span> <span class='ident'>Hint</span>;
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;click me&quot;</span>)
     .<span class='ident'>action</span>(<span class='string'>&quot;default&quot;</span>, <span class='string'>&quot;default&quot;</span>)
     .<span class='ident'>action</span>(<span class='string'>&quot;clicked&quot;</span>, <span class='string'>&quot;click here&quot;</span>)
     .<span class='ident'>hint</span>(<span class='ident'>Hint</span>::<span class='ident'>Resident</span>(<span class='boolval'>true</span>))
     .<span class='ident'>show</span>()
+    .<span class='ident'>unwrap</span>()
     .<span class='ident'>wait_for_action</span>({<span class='op'>|</span><span class='ident'>action</span><span class='op'>|</span>
         <span class='kw'>match</span> <span class='ident'>action</span> {
             <span class='string'>&quot;default&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;you clicked \&quot;default\&quot;&quot;</span>)},
             <span class='string'>&quot;clicked&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;that was correct&quot;</span>)},
-            <span class='string'>&quot;__closed&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;the notification was closed&quot;</span>)}, <span class='comment'>// here &quot;__closed&quot; is a hardcoded keyword</span>
+            <span class='comment'>// here &quot;__closed&quot; is a hardcoded keyword</span>
+            <span class='string'>&quot;__closed&quot;</span> <span class='op'>=&gt;</span> {<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;the notification was closed&quot;</span>)},
             _ <span class='op'>=&gt;</span> ()
         }
     });
 </pre>
 
 <p>more <a href="https://github.com/hoodie/notify-rust/tree/master/examples">examples</a> in the repository.</p>
-</div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>pub use hints::<a class='enum' href='../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='hints/index.html'
+                               title='notify_rust::hints'>hints</a></td>
+                        <td class='docblock short'>
+                             <p>NotificationHints allow to pass extra information to the server.</p>
+
+                        </td>
+                    </tr>
+                
                     <tr class=' module-item'>
                         <td><a class='mod' href='server/index.html'
                                title='notify_rust::server'>server</a></td>
@@ -133,18 +155,11 @@
                 </table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
 <table>
                     <tr class=' module-item'>
-                        <td><a class='enum' href='enum.NotificationHint.html'
-                               title='notify_rust::NotificationHint'>NotificationHint</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='enum' href='enum.NotificationUrgency.html'
                                title='notify_rust::NotificationUrgency'>NotificationUrgency</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Levels of Urgency.</p>
+
                         </td>
                     </tr>
                 </table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
@@ -163,6 +178,17 @@
                                title='notify_rust::get_server_information'>get_server_information</a></td>
                         <td class='docblock short'>
                              <p>Returns a struct containing ServerInformation.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='fn' href='fn.stop_server.html'
+                               title='notify_rust::stop_server'>stop_server</a></td>
+                        <td class='docblock short'>
+                             <p>Strictly internal.
+The Notificationserver implemented here exposes a &quot;Stop&quot; function.
+stops the notification server</p>
 
                         </td>
                     </tr>
