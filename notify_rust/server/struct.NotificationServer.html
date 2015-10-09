@@ -45,16 +45,22 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-283' class='srclink' href='../../src/notify_rust/server.rs.html#23-26' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-283' class='srclink' href='../../src/notify_rust/server.rs.html#25-30' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct NotificationServer {
     pub counter: <a class='struct' href='http://doc.rust-lang.org/nightly/core/cell/struct.Cell.html' title='core::cell::Cell'>Cell</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>&gt;,
     pub stop: <a class='struct' href='http://doc.rust-lang.org/nightly/core/cell/struct.Cell.html' title='core::cell::Cell'>Cell</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>&gt;,
-}</pre><h2 class='fields'>Fields</h2>
+}</pre><div class='docblock'><p>An <strong>experimental</strong> notification server.
+See <a href="index.html">the module level documentation</a> for more.</p>
+</div><h2 class='fields'>Fields</h2>
 <table><tr class='stab '>
-                                  <td id='structfield.counter'><code>counter</code></td><td></td></tr><tr class='stab '>
-                                  <td id='structfield.stop'><code>stop</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../notify_rust/server/struct.NotificationServer.html' title='notify_rust::server::NotificationServer'>NotificationServer</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../../notify_rust/server/struct.NotificationServer.html' title='notify_rust::server::NotificationServer'>NotificationServer</a></code></h4>
-<h4 id='method.start' class='method'><code>fn <a href='#method.start' class='fnname'>start</a>&lt;F&gt;(&amp;mut self, closure: F) <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(&amp;<a class='struct' href='../../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a>)</span></code></h4>
-</div></section>
+                                  <td id='structfield.counter'><code>counter</code></td><td><div class='docblock'><p>Counter for generating notification ids</p>
+</div></td></tr><tr class='stab '>
+                                  <td id='structfield.stop'><code>stop</code></td><td><div class='docblock'><p>A flag that stops the server</p>
+</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../../notify_rust/server/struct.NotificationServer.html' title='notify_rust::server::NotificationServer'>NotificationServer</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../../notify_rust/server/struct.NotificationServer.html' title='notify_rust::server::NotificationServer'>NotificationServer</a></code></h4>
+<div class='docblock'><p>Create a new <code>NotificationServer</code> instance.</p>
+</div><h4 id='method.start' class='method'><code>fn <a href='#method.start' class='fnname'>start</a>&lt;F&gt;(&amp;mut self, closure: F) <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Fn.html' title='core::ops::Fn'>Fn</a>(&amp;<a class='struct' href='../../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a>)</span></code></h4>
+<div class='docblock'><p>Start listening for incoming notifications</p>
+</div></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

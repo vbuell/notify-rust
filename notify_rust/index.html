@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/notify_rust/lib.rs.html#1-567' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/notify_rust/lib.rs.html#1-577' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Desktop Notifications for Rust.</p>
 
 <p>Desktop notifications are popup messages generated to notify the user of certain events.</p>
@@ -54,9 +54,6 @@
                            href="#examples">Examples</a></h1>
 <h2 id="example-1-(simple-notification)" class='section-header'><a
                            href="#example-1-(simple-notification)">Example 1 (Simple Notification)</a></h2><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
-<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span> <span class='kw'>as</span> <span class='ident'>Hint</span>;
-
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;Firefox News&quot;</span>)
     .<span class='ident'>body</span>(<span class='string'>&quot;This will almost look like a real firefox notification.&quot;</span>)
@@ -66,8 +63,6 @@
 
 <h2 id="example-2-(persistent-notification)" class='section-header'><a
                            href="#example-2-(persistent-notification)">Example 2 (Persistent Notification)</a></h2><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
-<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span> <span class='kw'>as</span> <span class='ident'>Hint</span>;
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;Category:email&quot;</span>)
     .<span class='ident'>body</span>(<span class='string'>&quot;This has nothing to do with emails.\nIt should not go away untill you acknoledge it.&quot;</span>)
@@ -83,8 +78,6 @@ It is possible to set <code>urgency=Low</code> AND <code>urgency=Critical</code>
 
 <h2 id="example-3-(ask-the-user-to-do-something)" class='section-header'><a
                            href="#example-3-(ask-the-user-to-do-something)">Example 3 (Ask the user to do something)</a></h2><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
-<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span> <span class='kw'>as</span> <span class='ident'>Hint</span>;
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;click me&quot;</span>)
     .<span class='ident'>action</span>(<span class='string'>&quot;default&quot;</span>, <span class='string'>&quot;default&quot;</span>)

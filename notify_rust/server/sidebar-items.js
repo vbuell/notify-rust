@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["VERSION",""]],"struct":[["NotificationServer",""]]});
+initSidebarItems({"constant":[["VERSION",""]],"struct":[["NotificationServer","An **experimental** notification server. See the module level documentation for more."]]});

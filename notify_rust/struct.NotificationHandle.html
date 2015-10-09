@@ -45,32 +45,32 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-3917' class='srclink' href='../src/notify_rust/lib.rs.html#335-340' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-3928' class='srclink' href='../src/notify_rust/lib.rs.html#334-339' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct NotificationHandle {
     // some fields omitted
 }</pre><div class='docblock'><p>A handle to a shown notification.</p>
 
 <p>This keeps a connection alive to ensure actions work on certain desktops.</p>
 </div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a></code></h3><div class='impl-items'><h4 id='method.wait_for_action' class='method'><code>fn <a href='#method.wait_for_action' class='fnname'>wait_for_action</a>&lt;F&gt;(self, invokation_closure: F) <span class='where'>where F: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</span></code></h4>
-<h4 id='method.close' class='method'><code>fn <a href='#method.close' class='fnname'>close</a>(self)</code></h4>
+<div class='docblock'><p>Waits for the user to act on a notification and then calls
+<code>invokation_closure</code> with the name of the corresponding action.</p>
+</div><h4 id='method.close' class='method'><code>fn <a href='#method.close' class='fnname'>close</a>(self)</code></h4>
 <div class='docblock'><p>Manually close the notification</p>
 </div><h4 id='method.update' class='method'><code>fn <a href='#method.update' class='fnname'>update</a>(&amp;mut self)</code></h4>
 <div class='docblock'><p>Replace the original notification with an updated version</p>
 
 <h2 id="example" class='section-header'><a
                            href="#example">Example</a></h2><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
-
 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>notification</span> <span class='op'>=</span> <span class='ident'>Notification</span>::<span class='ident'>new</span>()
-    .<span class='ident'>summary</span>(<span class='string'>&quot;Foo&quot;</span>)
-    .<span class='ident'>body</span>(<span class='string'>&quot;foo demo&quot;</span>)
+    .<span class='ident'>summary</span>(<span class='string'>&quot;Latest News&quot;</span>)
+    .<span class='ident'>body</span>(<span class='string'>&quot;Bayern Dortmund 3:2&quot;</span>)
     .<span class='ident'>show</span>().<span class='ident'>unwrap</span>();
 
 <span class='ident'>std</span>::<span class='ident'>thread</span>::<span class='ident'>sleep_ms</span>(<span class='number'>1_500</span>);
 
 <span class='ident'>notification</span>
-    .<span class='ident'>summary</span>(<span class='string'>&quot;Bar&quot;</span>)
-    .<span class='ident'>body</span>(<span class='string'>&quot;bar demo&quot;</span>);
+    .<span class='ident'>summary</span>(<span class='string'>&quot;Latest News (Correction)&quot;</span>)
+    .<span class='ident'>body</span>(<span class='string'>&quot;Bayern Dortmund 3:3&quot;</span>);
 
 <span class='ident'>notification</span>.<span class='ident'>update</span>();</pre>
 
@@ -102,8 +102,6 @@ You can also use an absolute path to file.</p>
 <p>This method will add a hint to the internal hint hashset.
 Hints must be of type NotificationHint.</p>
 <pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>Notification</span>;
-<span class='kw'>use</span> <span class='ident'>notify_rust</span>::<span class='ident'>NotificationHint</span>;
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;Category:email&quot;</span>)
     .<span class='ident'>body</span>(<span class='string'>&quot;This should not go away until you acknoledge it.&quot;</span>)
