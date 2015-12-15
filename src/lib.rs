@@ -346,7 +346,7 @@ impl Notification {
             .arg("-e")
             .arg(&format!("display notification \"{message}\" with title \"{title}\"",
                           title= self.summary,
-                          message= self.body.
+                          message= self.body,
                           // icon = self.icon // add "with icon" ?? perhaps
                           ))
             .output().unwrap();
