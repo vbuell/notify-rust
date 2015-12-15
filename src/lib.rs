@@ -83,7 +83,9 @@ use dbus::{Connection, ConnectionItem, BusType, Message, MessageItem, Error};
 mod util;
 #[cfg(target_os="linux")]
 pub mod server;
+#[cfg(target_os="linux")]
 pub mod hints;
+#[cfg(target_os="linux")]
 pub use hints::NotificationHint;
 
 
@@ -313,6 +315,13 @@ impl Notification {
 
     #[cfg(target_os="macos")]
     fn _show(&mut self, id:u32, connection: &Connection) -> Result<u32, Error> {
+        use std::process::Command;
+
+        let output = Command::new("osascript")
+            .arg("-e")
+            .arg("notify-rust-osx")
+            .output() .unwrap();
+        println!("{:?}", output.stdout);
     }
 
     /// Wraps show() but prints notification to stdout.

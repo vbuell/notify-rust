@@ -175,7 +175,7 @@ impl<'a> From<&'a MessageItem> for NotificationHint {
 
 }
 
-#[cfg(and(test, target_os="linux"))]
+#[cfg(all(test, target_os="linux"))]
 mod test{
     use super::*;
     use super::NotificationHint as Hint;
