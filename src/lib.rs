@@ -78,10 +78,10 @@ use std::ops::{Deref,DerefMut};
 
 #[cfg(target_os="linux")]
 extern crate dbus;
-#[cfg(target_os="linux")]
 use dbus::{Connection, ConnectionItem, BusType, Message, MessageItem, Error};
 
 mod util;
+#[cfg(target_os="linux")]
 pub mod server;
 pub mod hints;
 pub use hints::NotificationHint;

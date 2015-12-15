@@ -9,7 +9,7 @@
 //! Usually the `get_capabilities()` gives some clues, but the standards usually mention much more
 //! than is actually available.
 
-
+#[cfg(target_os="linux")]
 use dbus::MessageItem;
 use super::NotificationUrgency;
 use util::*;
@@ -31,8 +31,7 @@ const URGENCY:&'static str        = "urgency";
 
 /// All currently implemented NotificationHints that can be send.
 #[derive(Eq, PartialEq, Hash, Clone, Debug)]
-pub enum NotificationHint
-{ // as found on https://developer.gnome.org/notification-spec/
+pub enum NotificationHint { // as found on https://developer.gnome.org/notification-spec/
     /// If true, server may interpret action identifiers as named icons and display those.
     ActionIcons(bool),
 
@@ -45,11 +44,11 @@ pub enum NotificationHint
     /// Name of the DesktopEntry representing the calling application. In case of "firefox.desktop"
     /// use "firefox". May be used to retrieve the correct icon.
     DesktopEntry(String),
-    
+
     // ///Not yet implemented
     //ImageData(iiibiiay),
     //IconData(iiibiiay),
-    
+
     /// Display the image at this path.
     ImagePath(String),
 
@@ -176,7 +175,7 @@ impl<'a> From<&'a MessageItem> for NotificationHint {
 
 }
 
-#[cfg(test)]
+#[cfg(and(test, target_os="linux"))]
 mod test{
     use super::*;
     use super::NotificationHint as Hint;
