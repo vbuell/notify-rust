@@ -84,9 +84,9 @@ use dbus::{Connection, ConnectionItem, BusType, Message, MessageItem, Error};
 mod util;
 #[cfg(target_os="linux")]
 pub mod server;
-#[cfg(target_os="linux")]
+// #[cfg(target_os="linux")]
 pub mod hints;
-#[cfg(target_os="linux")]
+// #[cfg(target_os="linux")]
 pub use hints::NotificationHint;
 
 
@@ -254,6 +254,7 @@ impl Notification {
         }
     }
 
+    #[cfg(target_os="linux")]
     fn pack_hints(&self) -> MessageItem {
         if !self.hints.is_empty() {
             let hints:Vec<MessageItem> = self.hints.iter().map(|hint| hint.into() ).collect();
@@ -267,6 +268,7 @@ impl Notification {
         return MessageItem::Array(vec![], sig);
     }
 
+    #[cfg(target_os="linux")]
     fn pack_actions(&self) -> MessageItem {
         if !self.actions.is_empty() {
             let mut actions = vec![];

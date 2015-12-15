@@ -12,6 +12,7 @@
 #[cfg(target_os="linux")]
 use dbus::MessageItem;
 use super::NotificationUrgency;
+#[cfg(target_os="linux")]
 use util::*;
 
 const ACTION_ICONS:&'static str   = "action-icons";
@@ -119,6 +120,7 @@ impl NotificationHint {
     }
 }
 
+#[cfg(target_os="linux")]
 impl<'a> From<&'a NotificationHint> for MessageItem {
     fn from(hint: &NotificationHint) -> MessageItem {
         let hint:(String,MessageItem) = match hint {
@@ -148,6 +150,7 @@ impl<'a> From<&'a NotificationHint> for MessageItem {
 }
 
 //impl<'a> FromMessageItem<'a> for NotificationHint {
+#[cfg(target_os="linux")]
 impl<'a> From<&'a MessageItem> for NotificationHint {
     fn from (item: &MessageItem) -> NotificationHint {
         match item{
