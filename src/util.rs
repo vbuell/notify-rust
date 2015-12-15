@@ -1,4 +1,4 @@
-#![cfg(target_os="linux")]
+#![cfg(all( target_os="linux", not(fakeosx)) )]
 use std::borrow::Cow;
 use dbus::MessageItem;
 

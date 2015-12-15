@@ -9,10 +9,12 @@
 //! Usually the `get_capabilities()` gives some clues, but the standards usually mention much more
 //! than is actually available.
 
-#[cfg(target_os="linux")]
+#![cfg(all( target_os="linux", not(fakeosx)) )]
+
+#[cfg(all( target_os="linux", not(fakeosx)) )]
 use dbus::MessageItem;
 use super::NotificationUrgency;
-#[cfg(target_os="linux")]
+#[cfg(all( target_os="linux", not(fakeosx)) )]
 use util::*;
 
 const ACTION_ICONS:&'static str   = "action-icons";
@@ -120,7 +122,7 @@ impl NotificationHint {
     }
 }
 
-#[cfg(target_os="linux")]
+#[cfg(all( target_os="linux", not(fakeosx)) )]
 impl<'a> From<&'a NotificationHint> for MessageItem {
     fn from(hint: &NotificationHint) -> MessageItem {
         let hint:(String,MessageItem) = match hint {
@@ -150,7 +152,7 @@ impl<'a> From<&'a NotificationHint> for MessageItem {
 }
 
 //impl<'a> FromMessageItem<'a> for NotificationHint {
-#[cfg(target_os="linux")]
+#[cfg(all( target_os="linux", not(fakeosx)) )]
 impl<'a> From<&'a MessageItem> for NotificationHint {
     fn from (item: &MessageItem) -> NotificationHint {
         match item{
@@ -178,7 +180,7 @@ impl<'a> From<&'a MessageItem> for NotificationHint {
 
 }
 
-#[cfg(all(test, target_os="linux"))]
+#[cfg(all(test, target_os="linux", not(fakeosx)) )]
 mod test{
     use super::*;
     use super::NotificationHint as Hint;

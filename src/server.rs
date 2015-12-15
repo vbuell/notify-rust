@@ -5,7 +5,7 @@
 //!
 //! This server will not replace an already running notification server.
 //!
-#![cfg(target_os="linux")]
+#![cfg(all( target_os="linux", not(fakeosx)) )]
 
 #![allow(missing_debug_implementations)]
 extern crate dbus;
