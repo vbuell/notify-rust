@@ -342,12 +342,13 @@ impl Notification {
     pub fn show(&mut self) -> Result<(), String> {
         use std::process::Command;
 
-        let output = Command::new("notify")
-            .arg("send")
-            .arg(&self.summary)
-            .arg(&self.body)
-            .arg("-a").arg(&self.appname)
-            .arg("-i").arg(&self.icon)
+        let output = Command::new("osascript")
+            .arg("-e")
+            .arg(&format!("display notification \"{message}\" with title \"{title}\"",
+                          title= self.summary,
+                          message= self.body.
+                          // icon = self.icon // add "with icon" ?? perhaps
+                          ))
             .output().unwrap();
         println!("{:?}", output.stdout);
         Ok(())
