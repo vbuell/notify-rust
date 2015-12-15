@@ -78,6 +78,7 @@ use std::ops::{Deref,DerefMut};
 
 #[cfg(target_os="linux")]
 extern crate dbus;
+#[cfg(target_os="linux")]
 use dbus::{Connection, ConnectionItem, BusType, Message, MessageItem, Error};
 
 mod util;
@@ -365,10 +366,16 @@ impl NotificationHandle {
     }
 
     /// Manually close the notification
+    #[cfg(target_os="linux")]
     pub fn close(self) {
         let mut message = build_message("CloseNotification");
         message.append_items(&[ self.id.into() ]);
         let _ = self.connection.send(message); // If closing fails there's nothing we could do anyway
+    }
+
+    #[cfg(target_os="macos")]
+    pub fn close(self) {
+
     }
 
     /// Replace the original notification with an updated version
@@ -561,6 +568,7 @@ fn exe_name() -> String {
     .file_name().unwrap().to_str().unwrap().to_owned()
 }
 
+#[cfg(target_os="linux")]
 fn build_message(method_name:&str) -> Message {
     Message::new_method_call(
         "org.freedesktop.Notifications",
