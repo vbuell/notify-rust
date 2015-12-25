@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>dbus</a></p><script>window.sidebarCurrent = {name: 'Props', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,23 +45,25 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-10275' class='srclink' href='../src/dbus/prop.rs.html#5-11' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1395' class='srclink' href='../src/dbus/prop.rs.html#5-11' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Props&lt;'a&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p>Client side properties - get and set properties on a remote application.</p>
-</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;'a&gt; <a class='struct' href='../dbus/struct.Props.html' title='dbus::Props'>Props</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(conn: &amp;'a <a class='struct' href='../dbus/struct.Connection.html' title='dbus::Connection'>Connection</a>, name: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, path: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, interface: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, timeout_ms: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a class='struct' href='../dbus/struct.Props.html' title='dbus::Props'>Props</a>&lt;'a&gt;</code></h4>
-<h4 id='method.get' class='method'><code>fn <a href='#method.get' class='fnname'>get</a>(&amp;self, propname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.set' class='method'><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;self, propname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, value: <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
-<h4 id='method.get_all' class='method'><code>fn <a href='#method.get_all' class='fnname'>get_all</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>&gt;, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;'a&gt; <a class='struct' href='../dbus/struct.Props.html' title='dbus::Props'>Props</a>&lt;'a&gt;</code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>&lt;N, P, I&gt;(conn: &amp;'a <a class='struct' href='../dbus/struct.Connection.html' title='dbus::Connection'>Connection</a>, name: N, path: P, interface: I, timeout_ms: <a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a class='struct' href='../dbus/struct.Props.html' title='dbus::Props'>Props</a>&lt;'a&gt; <span class='where'>where N: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../dbus/struct.BusName.html' title='dbus::BusName'>BusName</a>&gt;, P: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../dbus/struct.Path.html' title='dbus::Path'>Path</a>&gt;, I: <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../dbus/struct.Interface.html' title='dbus::Interface'>Interface</a>&gt;</span></code></h4>
+<h4 id='method.get' class='method'><code>fn <a href='#method.get' class='fnname'>get</a>(&amp;self, propname: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.set' class='method'><code>fn <a href='#method.set' class='fnname'>set</a>(&amp;self, propname: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, value: <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
+<h4 id='method.get_all' class='method'><code>fn <a href='#method.get_all' class='fnname'>get_all</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/btree/map/struct.BTreeMap.html' title='collections::btree::map::BTreeMap'>BTreeMap</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>&gt;, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -78,7 +80,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -88,8 +90,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -98,7 +100,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'></p><script>window.sidebarCurrent = {name: 'notify_rust', ty: 'mod', relpath: '../'};</script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,15 +45,13 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/notify_rust/lib.rs.html#1-577' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/notify_rust/lib.rs.html#1-568' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Desktop Notifications for Rust.</p>
 
 <p>Desktop notifications are popup messages generated to notify the user of certain events.</p>
 
-<h1 id="examples" class='section-header'><a
-                           href="#examples">Examples</a></h1>
-<h2 id="example-1-(simple-notification)" class='section-header'><a
-                           href="#example-1-(simple-notification)">Example 1 (Simple Notification)</a></h2><pre class='rust rust-example-rendered'>
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<h2 id='example-1-simple-notification' class='section-header'><a href='#example-1-simple-notification'>Example 1 (Simple Notification)</a></h2><pre class='rust rust-example-rendered'>
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;Firefox News&quot;</span>)
     .<span class='ident'>body</span>(<span class='string'>&quot;This will almost look like a real firefox notification.&quot;</span>)
@@ -61,8 +59,7 @@
     .<span class='ident'>timeout</span>(<span class='number'>6000</span>) <span class='comment'>//milliseconds</span>
     .<span class='ident'>show</span>().<span class='ident'>unwrap</span>();</pre>
 
-<h2 id="example-2-(persistent-notification)" class='section-header'><a
-                           href="#example-2-(persistent-notification)">Example 2 (Persistent Notification)</a></h2><pre class='rust rust-example-rendered'>
+<h2 id='example-2-persistent-notification' class='section-header'><a href='#example-2-persistent-notification'>Example 2 (Persistent Notification)</a></h2><pre class='rust rust-example-rendered'>
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;Category:email&quot;</span>)
     .<span class='ident'>body</span>(<span class='string'>&quot;This has nothing to do with emails.\nIt should not go away untill you acknoledge it.&quot;</span>)
@@ -76,8 +73,7 @@
 <p>Careful! There are no checks whether you use hints twice.
 It is possible to set <code>urgency=Low</code> AND <code>urgency=Critical</code>, in which case the behavior of the server is undefined.</p>
 
-<h2 id="example-3-(ask-the-user-to-do-something)" class='section-header'><a
-                           href="#example-3-(ask-the-user-to-do-something)">Example 3 (Ask the user to do something)</a></h2><pre class='rust rust-example-rendered'>
+<h2 id='example-3-ask-the-user-to-do-something' class='section-header'><a href='#example-3-ask-the-user-to-do-something'>Example 3 (Ask the user to do something)</a></h2><pre class='rust rust-example-rendered'>
 <span class='ident'>Notification</span>::<span class='ident'>new</span>()
     .<span class='ident'>summary</span>(<span class='string'>&quot;click me&quot;</span>)
     .<span class='ident'>action</span>(<span class='string'>&quot;default&quot;</span>, <span class='string'>&quot;default&quot;</span>)
@@ -176,6 +172,15 @@ It is possible to set <code>urgency=Low</code> AND <code>urgency=Critical</code>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='fn' href='fn.handle_actions.html'
+                               title='notify_rust::handle_actions'>handle_actions</a></td>
+                        <td class='docblock short'>
+                             <p>Listens for the <code>ActionInvoked(UInt32, String)</code> Signal.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='fn' href='fn.stop_server.html'
                                title='notify_rust::stop_server'>stop_server</a></td>
                         <td class='docblock short'>
@@ -190,10 +195,12 @@ stops the notification server</p>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -210,7 +217,7 @@ stops the notification server</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -220,8 +227,8 @@ stops the notification server</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -230,7 +237,7 @@ stops the notification server</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

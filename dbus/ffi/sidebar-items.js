@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["DBusBusType",""],["DBusMessageType",""],["DBusNameFlag",""],["DBusReleaseNameReply",""],["DBusRequestNameReply",""]]});
+initSidebarItems({"enum":[["DBusBusType",""],["DBusMessageType",""],["DBusNameFlag",""],["DBusReleaseNameReply",""],["DBusRequestNameReply",""],["DBusWatchEvent",""]]});

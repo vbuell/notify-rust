@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/home/hendrik/.multirust/toolchains/stable/cargo/registry/src/github.com-0a35038f75765ae4/dbus-0.1.2/src/prop.rs`.">
+    <meta name="description" content="Source to the Rust file `/home/hendrik/.multirust/toolchains/stable/cargo/registry/src/github.com-0a35038f75765ae4/dbus-0.2.1/src/prop.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>prop.rs.html -- source</title>
@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -164,34 +164,36 @@
 <span id="122">122</span>
 <span id="123">123</span>
 <span id="124">124</span>
+<span id="125">125</span>
 </pre><pre class='rust '>
-<span class='kw'>use</span> <span class='ident'>super</span>::{<span class='ident'>Connection</span>, <span class='ident'>Message</span>, <span class='ident'>MessageItem</span>, <span class='ident'>Error</span>};
+<span class='kw'>use</span> <span class='ident'>super</span>::{<span class='ident'>Connection</span>, <span class='ident'>Message</span>, <span class='ident'>MessageItem</span>, <span class='ident'>Error</span>, <span class='ident'>Path</span>, <span class='ident'>Interface</span>, <span class='ident'>BusName</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>collections</span>::<span class='ident'>BTreeMap</span>;
 
 <span class='doccomment'>/// Client side properties - get and set properties on a remote application.</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Props</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
-    <span class='ident'>name</span>: <span class='ident'>String</span>,
-    <span class='ident'>path</span>: <span class='ident'>String</span>,
-    <span class='ident'>interface</span>: <span class='ident'>String</span>,
+    <span class='ident'>name</span>: <span class='ident'>BusName</span>,
+    <span class='ident'>path</span>: <span class='ident'>Path</span>,
+    <span class='ident'>interface</span>: <span class='ident'>Interface</span>,
     <span class='ident'>timeout_ms</span>: <span class='ident'>i32</span>,
     <span class='ident'>conn</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>Connection</span>,
 }
 
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> <span class='ident'>Props</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>conn</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>Connection</span>, <span class='ident'>name</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>path</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>interface</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>timeout_ms</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>Props</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span><span class='op'>&lt;</span><span class='ident'>N</span>, <span class='ident'>P</span>, <span class='ident'>I</span><span class='op'>&gt;</span>(<span class='ident'>conn</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='ident'>Connection</span>, <span class='ident'>name</span>: <span class='ident'>N</span>, <span class='ident'>path</span>: <span class='ident'>P</span>, <span class='ident'>interface</span>: <span class='ident'>I</span>, <span class='ident'>timeout_ms</span>: <span class='ident'>i32</span>) <span class='op'>-&gt;</span> <span class='ident'>Props</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>
+    <span class='kw'>where</span> <span class='ident'>N</span>: <span class='ident'>Into</span><span class='op'>&lt;</span><span class='ident'>BusName</span><span class='op'>&gt;</span>, <span class='ident'>P</span>: <span class='ident'>Into</span><span class='op'>&lt;</span><span class='ident'>Path</span><span class='op'>&gt;</span>, <span class='ident'>I</span>: <span class='ident'>Into</span><span class='op'>&lt;</span><span class='ident'>Interface</span><span class='op'>&gt;</span> {
         <span class='ident'>Props</span> {
-            <span class='ident'>name</span>: <span class='ident'>name</span>.<span class='ident'>to_string</span>(),
-            <span class='ident'>path</span>: <span class='ident'>path</span>.<span class='ident'>to_string</span>(),
-            <span class='ident'>interface</span>: <span class='ident'>interface</span>.<span class='ident'>to_string</span>(),
+            <span class='ident'>name</span>: <span class='ident'>name</span>.<span class='ident'>into</span>(),
+            <span class='ident'>path</span>: <span class='ident'>path</span>.<span class='ident'>into</span>(),
+            <span class='ident'>interface</span>: <span class='ident'>interface</span>.<span class='ident'>into</span>(),
             <span class='ident'>timeout_ms</span>: <span class='ident'>timeout_ms</span>,
             <span class='ident'>conn</span>: <span class='ident'>conn</span>,
         }
     }
 
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>propname</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>MessageItem</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>new_method_call</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>name</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>path</span>,
-            <span class='string'>&quot;org.freedesktop.DBus.Properties&quot;</span>, <span class='string'>&quot;Get&quot;</span>).<span class='ident'>unwrap</span>();
-        <span class='ident'>m</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span>[<span class='self'>self</span>.<span class='ident'>interface</span>.<span class='ident'>clone</span>().<span class='ident'>into</span>(), <span class='ident'>propname</span>.<span class='ident'>to_string</span>().<span class='ident'>into</span>()]);
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>method_call</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>name</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>path</span>,
+            <span class='kw-2'>&amp;</span><span class='string'>&quot;org.freedesktop.DBus.Properties&quot;</span>.<span class='ident'>into</span>(), <span class='kw-2'>&amp;</span><span class='string'>&quot;Get&quot;</span>.<span class='ident'>into</span>());
+        <span class='ident'>m</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span>[<span class='self'>self</span>.<span class='ident'>interface</span>.<span class='ident'>to_string</span>().<span class='ident'>into</span>(), <span class='ident'>propname</span>.<span class='ident'>to_string</span>().<span class='ident'>into</span>()]);
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='self'>self</span>.<span class='ident'>conn</span>.<span class='ident'>send_with_reply_and_block</span>(<span class='ident'>m</span>, <span class='self'>self</span>.<span class='ident'>timeout_ms</span>));
         <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>r</span>.<span class='ident'>as_result</span>()).<span class='ident'>get_items</span>();
         <span class='kw'>if</span> <span class='ident'>reply</span>.<span class='ident'>len</span>() <span class='op'>==</span> <span class='number'>1</span> {
@@ -204,18 +206,18 @@
     }
 
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>set</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>propname</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>value</span>: <span class='ident'>MessageItem</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>new_method_call</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>name</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>path</span>,
-            <span class='string'>&quot;org.freedesktop.DBus.Properties&quot;</span>, <span class='string'>&quot;Set&quot;</span>).<span class='ident'>unwrap</span>();
-        <span class='ident'>m</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span>[<span class='self'>self</span>.<span class='ident'>interface</span>.<span class='ident'>clone</span>().<span class='ident'>into</span>(), <span class='ident'>propname</span>.<span class='ident'>to_string</span>().<span class='ident'>into</span>(), <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>value</span>).<span class='ident'>into</span>()]);
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>method_call</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>name</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>path</span>,
+            <span class='kw-2'>&amp;</span><span class='string'>&quot;org.freedesktop.DBus.Properties&quot;</span>.<span class='ident'>into</span>(), <span class='kw-2'>&amp;</span><span class='string'>&quot;Set&quot;</span>.<span class='ident'>into</span>());
+        <span class='ident'>m</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span>[<span class='self'>self</span>.<span class='ident'>interface</span>.<span class='ident'>to_string</span>().<span class='ident'>into</span>(), <span class='ident'>propname</span>.<span class='ident'>to_string</span>().<span class='ident'>into</span>(), <span class='ident'>Box</span>::<span class='ident'>new</span>(<span class='ident'>value</span>).<span class='ident'>into</span>()]);
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='self'>self</span>.<span class='ident'>conn</span>.<span class='ident'>send_with_reply_and_block</span>(<span class='ident'>m</span>, <span class='self'>self</span>.<span class='ident'>timeout_ms</span>));
         <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>r</span>.<span class='ident'>as_result</span>());
         <span class='prelude-val'>Ok</span>(())
     }
 
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_all</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>BTreeMap</span><span class='op'>&lt;</span><span class='ident'>String</span>, <span class='ident'>MessageItem</span><span class='op'>&gt;</span>, <span class='ident'>Error</span><span class='op'>&gt;</span> {
-        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>new_method_call</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>name</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>path</span>,
-            <span class='string'>&quot;org.freedesktop.DBus.Properties&quot;</span>, <span class='string'>&quot;GetAll&quot;</span>).<span class='ident'>unwrap</span>();
-        <span class='ident'>m</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span>[<span class='self'>self</span>.<span class='ident'>interface</span>.<span class='ident'>clone</span>().<span class='ident'>into</span>()]);
+        <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>m</span> <span class='op'>=</span> <span class='ident'>Message</span>::<span class='ident'>method_call</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>name</span>, <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>path</span>,
+            <span class='kw-2'>&amp;</span><span class='string'>&quot;org.freedesktop.DBus.Properties&quot;</span>.<span class='ident'>into</span>(), <span class='kw-2'>&amp;</span><span class='string'>&quot;GetAll&quot;</span>.<span class='ident'>into</span>());
+        <span class='ident'>m</span>.<span class='ident'>append_items</span>(<span class='kw-2'>&amp;</span>[<span class='self'>self</span>.<span class='ident'>interface</span>.<span class='ident'>to_string</span>().<span class='ident'>into</span>()]);
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>r</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='self'>self</span>.<span class='ident'>conn</span>.<span class='ident'>send_with_reply_and_block</span>(<span class='ident'>m</span>, <span class='self'>self</span>.<span class='ident'>timeout_ms</span>));
         <span class='kw'>let</span> <span class='ident'>reply</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>r</span>.<span class='ident'>as_result</span>()).<span class='ident'>get_items</span>();
 
@@ -295,10 +297,12 @@
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -315,7 +319,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -325,8 +329,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -335,7 +339,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='../index.html'>notify_rust</a>::<wbr><a href='index.html'>hints</a></p><script>window.sidebarCurrent = {name: 'NotificationHint', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,21 +45,21 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-969' class='srclink' href='../../src/notify_rust/hints.rs.html#34-87' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-109' class='srclink' href='../../src/notify_rust/hints.rs.html#34-87' title='goto source code'>[src]</a></span></h1>
 <pre class='rust enum'>pub enum NotificationHint {
-    ActionIcons(<a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>),
-    Category(<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
-    DesktopEntry(<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
-    ImagePath(<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
-    Resident(<a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>),
-    SoundFile(<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
-    SoundName(<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
-    SuppressSound(<a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>),
-    Transient(<a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>),
-    X(<a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>),
-    Y(<a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>),
+    ActionIcons(<a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>),
+    Category(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    DesktopEntry(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    ImagePath(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    Resident(<a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>),
+    SoundFile(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    SoundName(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    SuppressSound(<a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>),
+    Transient(<a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>),
+    X(<a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>),
+    Y(<a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>),
     Urgency(<a class='enum' href='../../notify_rust/enum.NotificationUrgency.html' title='notify_rust::NotificationUrgency'>NotificationUrgency</a>),
-    Custom(<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    Custom(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
     Invalid,
 }</pre><div class='docblock'><p>All currently implemented NotificationHints that can be send.</p>
 </div><h2 class='variants'>Variants</h2>
@@ -85,29 +85,31 @@ Requires <code>X</code>.</p>
 </div></td></tr><tr><td id='variant.Urgency'><code>Urgency</code></td><td><div class='docblock'><p>Pass me a NotificationUrgency, either Low, Normal or Critical</p>
 </div></td></tr><tr><td id='variant.Custom'><code>Custom</code></td><td><div class='docblock'><p>If you want to pass something entirely different.</p>
 </div></td></tr><tr><td id='variant.Invalid'><code>Invalid</code></td><td><div class='docblock'><p>Only used by this NotificationServer implementation</p>
-</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.as_bool' class='method'><code>fn <a href='#method.as_bool' class='fnname'>as_bool</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>&gt;</code></h4>
+</div></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.as_bool' class='method'><code>fn <a href='#method.as_bool' class='fnname'>as_bool</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>&gt;</code></h4>
 <div class='docblock'><p>Get the <code>bool</code> representation of this hint.</p>
-</div><h4 id='method.as_i32' class='method'><code>fn <a href='#method.as_i32' class='fnname'>as_i32</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>&gt;</code></h4>
+</div><h4 id='method.as_i32' class='method'><code>fn <a href='#method.as_i32' class='fnname'>as_i32</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>&gt;</code></h4>
 <div class='docblock'><p>Get the <code>i32</code> representation of this hint.</p>
-</div><h4 id='method.as_str' class='method'><code>fn <a href='#method.as_str' class='fnname'>as_str</a>(&amp;self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></h4>
+</div><h4 id='method.as_str' class='method'><code>fn <a href='#method.as_str' class='fnname'>as_str</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></h4>
 <div class='docblock'><p>Get the <code>&amp;str</code> representation of this hint.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;'a&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;&amp;'a <a class='enum' href='../../dbus/message/enum.MessageItem.html' title='dbus::message::MessageItem'>MessageItem</a>&gt; for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.from' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/convert/trait.From.html#method.from' class='fnname'>from</a>(item: &amp;<a class='enum' href='../../dbus/message/enum.MessageItem.html' title='dbus::message::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h4>
-</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h4>
-<h4 id='method.clone_from' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/hash/trait.Hash.html' title='core::hash::Hash'>Hash</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.hash' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#method.hash' class='fnname'>hash</a>&lt;__H: <a class='trait' href='http://doc.rust-lang.org/nightly/core/hash/trait.Hasher.html' title='core::hash::Hasher'>Hasher</a>&gt;(&amp;self, __arg_0: &amp;mut __H)</code></h4>
-<h4 id='method.hash_slice' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#method.hash_slice' class='fnname'>hash_slice</a>&lt;H&gt;(data: <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[Self]</a>, state: &amp;mut H) <span class='where'>where H: <a class='trait' href='http://doc.rust-lang.org/nightly/core/hash/trait.Hasher.html' title='core::hash::Hasher'>Hasher</a></span></code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
-<h4 id='method.ne' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'></div></section>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;'a&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html' title='core::convert::From'>From</a>&lt;&amp;'a <a class='enum' href='../../dbus/message/enum.MessageItem.html' title='dbus::message::MessageItem'>MessageItem</a>&gt; for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.From.html#method.from' class='fnname'>from</a>(item: &amp;<a class='enum' href='../../dbus/message/enum.MessageItem.html' title='dbus::message::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html' title='core::hash::Hash'>Hash</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.hash' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#method.hash' class='fnname'>hash</a>&lt;__H: <a class='trait' href='https://doc.rust-lang.org/nightly/core/hash/trait.Hasher.html' title='core::hash::Hasher'>Hasher</a>&gt;(&amp;self, __arg_0: &amp;mut __H)</code></h4>
+<h4 id='method.hash_slice' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#method.hash_slice' class='fnname'>hash_slice</a>&lt;H&gt;(data: <a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[Self]</a>, state: &amp;mut H) <span class='where'>where H: <a class='trait' href='https://doc.rust-lang.org/nightly/core/hash/trait.Hasher.html' title='core::hash::Hasher'>Hasher</a></span></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a>) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a>) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='enum' href='../../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a></code></h3><div class='impl-items'></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -124,7 +126,7 @@ Requires <code>X</code>.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -134,8 +136,8 @@ Requires <code>X</code>.</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -144,7 +146,7 @@ Requires <code>X</code>.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

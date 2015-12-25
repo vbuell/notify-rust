@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>notify_rust</a></p><script>window.sidebarCurrent = {name: 'Notification', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,15 +45,15 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-3076' class='srclink' href='../src/notify_rust/lib.rs.html#80-101' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-347' class='srclink' href='../src/notify_rust/lib.rs.html#95-115' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Notification {
-    pub appname: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
-    pub summary: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
-    pub body: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
-    pub icon: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
-    pub hints: <a class='struct' href='http://doc.rust-lang.org/nightly/std/collections/hash/set/struct.HashSet.html' title='std::collections::hash::set::HashSet'>HashSet</a>&lt;<a class='enum' href='../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a>&gt;,
-    pub actions: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
-    pub timeout: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>,
+    pub appname: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
+    pub summary: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
+    pub body: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
+    pub icon: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
+    pub hints: <a class='struct' href='https://doc.rust-lang.org/nightly/std/collections/hash/set/struct.HashSet.html' title='std::collections::hash::set::HashSet'>HashSet</a>&lt;<a class='enum' href='../notify_rust/hints/enum.NotificationHint.html' title='notify_rust::hints::NotificationHint'>NotificationHint</a>&gt;,
+    pub actions: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;,
+    pub timeout: <a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>,
     // some fields omitted
 }</pre><div class='docblock'><p>Desktop notification.</p>
 
@@ -82,19 +82,19 @@ checkout <code>get_capabilities()</code> -&gt; <code>body-markup</code> and <cod
 <p>Most fields are empty by default, only <code>appname</code> is initialized with the name of the current
 executable.
 The appname is used by some desktop environments to group notifications.</p>
-</div><h4 id='method.appname' class='method'><code>fn <a href='#method.appname' class='fnname'>appname</a>(&amp;mut self, appname: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div><h4 id='method.appname' class='method'><code>fn <a href='#method.appname' class='fnname'>appname</a>(&amp;mut self, appname: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Overwrite the appname field used for Notification.</p>
-</div><h4 id='method.summary' class='method'><code>fn <a href='#method.summary' class='fnname'>summary</a>(&amp;mut self, summary: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div><h4 id='method.summary' class='method'><code>fn <a href='#method.summary' class='fnname'>summary</a>(&amp;mut self, summary: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Set the <code>summary</code>.</p>
 
 <p>Often acts as title of the notification. For more elaborate content use the <code>body</code> field.</p>
-</div><h4 id='method.body' class='method'><code>fn <a href='#method.body' class='fnname'>body</a>(&amp;mut self, body: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div><h4 id='method.body' class='method'><code>fn <a href='#method.body' class='fnname'>body</a>(&amp;mut self, body: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Set the content of the <code>body</code> field.</p>
 
 <p>Multiline textual content of the notification.
 Each line should be treated as a paragraph.
 Simple html markup should be supported, depending on the server implementation.</p>
-</div><h4 id='method.icon' class='method'><code>fn <a href='#method.icon' class='fnname'>icon</a>(&amp;mut self, icon: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div><h4 id='method.icon' class='method'><code>fn <a href='#method.icon' class='fnname'>icon</a>(&amp;mut self, icon: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Set the <code>icon</code> field.</p>
 
 <p>You can use common icon names here, usually those in <code>/usr/share/icons</code>
@@ -114,7 +114,7 @@ Hints must be of type NotificationHint.</p>
     .<span class='ident'>hint</span>(<span class='ident'>NotificationHint</span>::<span class='ident'>Category</span>(<span class='string'>&quot;email&quot;</span>.<span class='ident'>to_owned</span>()))
     .<span class='ident'>hint</span>(<span class='ident'>NotificationHint</span>::<span class='ident'>Resident</span>(<span class='boolval'>true</span>))
     .<span class='ident'>show</span>();</pre>
-</div><h4 id='method.timeout' class='method'><code>fn <a href='#method.timeout' class='fnname'>timeout</a>(&amp;mut self, timeout: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div><h4 id='method.timeout' class='method'><code>fn <a href='#method.timeout' class='fnname'>timeout</a>(&amp;mut self, timeout: <a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Set the <code>timeout</code>.</p>
 
 <p>This sets the time (in miliseconds) from the time the notification is displayed until it is
@@ -126,7 +126,7 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
 <div class='docblock'><p>Set the <code>urgency</code>.</p>
 
 <p>Pick between Medium, Low and High.</p>
-</div><h4 id='method.actions' class='method'><code>fn <a href='#method.actions' class='fnname'>actions</a>(&amp;mut self, actions: <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div><h4 id='method.actions' class='method'><code>fn <a href='#method.actions' class='fnname'>actions</a>(&amp;mut self, actions: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>&gt;) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Set <code>actions</code>.</p>
 
 <p>To quote <a href="http://www.galago-project.org/specs/notification/0.9/x408.html#command-notify">http://www.galago-project.org/specs/notification/0.9/x408.html#command-notify</a></p>
@@ -139,7 +139,7 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
 
 <p>There is nothing fancy going on here yet.
 <strong>Carefull! This replaces the internal list of actions!</strong></p>
-</div><h4 id='method.action' class='method'><code>fn <a href='#method.action' class='fnname'>action</a>(&amp;mut self, identifier: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, label: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+</div><h4 id='method.action' class='method'><code>fn <a href='#method.action' class='fnname'>action</a>(&amp;mut self, identifier: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, label: &amp;<a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; &amp;mut <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
 <div class='docblock'><p>Add an action.</p>
 
 <p>This adds a single action to the internal list of actions.</p>
@@ -147,24 +147,26 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
 <div class='docblock'><p>Finalizes a Notification.</p>
 
 <p>Part of the builder pattern, returns a complete copy of the built notification.</p>
-</div><h4 id='method.show' class='method'><code>fn <a href='#method.show' class='fnname'>show</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
+</div><h4 id='method.show' class='method'><code>fn <a href='#method.show' class='fnname'>show</a>(&amp;mut self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
 <div class='docblock'><p>Sends Notification to D-Bus.</p>
 
 <p>Returns a handle to a notification</p>
-</div><h4 id='method.show_debug' class='method'><code>fn <a href='#method.show_debug' class='fnname'>show_debug</a>(&amp;mut self) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
+</div><h4 id='method.show_debug' class='method'><code>fn <a href='#method.show_debug' class='fnname'>show_debug</a>(&amp;mut self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='struct' href='../notify_rust/struct.NotificationHandle.html' title='notify_rust::NotificationHandle'>NotificationHandle</a>, <a class='struct' href='../dbus/struct.Error.html' title='dbus::Error'>Error</a>&gt;</code></h4>
 <div class='docblock'><p>Wraps show() but prints notification to stdout.</p>
-</div></div><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
-<h4 id='method.clone_from' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../notify_rust/struct.Notification.html' title='notify_rust::Notification'>Notification</a></code></h3><div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#method.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -181,7 +183,7 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -191,8 +193,8 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -201,7 +203,7 @@ According to <a href="https://developer.gnome.org/notification-spec/">specificat
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

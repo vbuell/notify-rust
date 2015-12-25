@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'></p><script>window.sidebarCurrent = {name: 'dbus', ty: 'mod', relpath: '../'};</script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/dbus/lib.rs.html#1-461' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/dbus/lib.rs.html#1-566' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>D-Bus bindings for Rust</p>
 
 <p><a href="http://dbus.freedesktop.org/">D-Bus</a> is a message bus, and is mainly used in Linux
@@ -61,12 +61,34 @@ system-wide.</p>
                                title='dbus::obj'>obj</a></td>
                         <td class='docblock short'>
                              <p>Contains functionality for the &quot;server&quot; of a D-Bus object. A remote application can
-introspect this object and call methods on it.</p>
+introspect this object and call methods on it.
+Deprecated - use the <code>tree</code> module instead.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='mod' href='tree/index.html'
+                               title='dbus::tree'>tree</a></td>
+                        <td class='docblock short'>
+                             <p>Contains functionality for dispatching methods on a D-Bus &quot;server&quot;.
+Supersedes the <code>obj</code> module. Properties are somewhat still WIP,
+but should in any case be better than <code>obj</code> already.</p>
 
                         </td>
                     </tr>
                 </table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.BusName.html'
+                               title='dbus::BusName'>BusName</a></td>
+                        <td class='docblock short'>
+                             <p>A wrapper around a string that is guaranteed to be
+a valid D-Bus bus name.</p>
+
+                        </td>
+                    </tr>
+                
                     <tr class=' module-item'>
                         <td><a class='struct' href='struct.Connection.html'
                                title='dbus::Connection'>Connection</a></td>
@@ -95,6 +117,36 @@ introspect this object and call methods on it.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='struct' href='struct.ErrorName.html'
+                               title='dbus::ErrorName'>ErrorName</a></td>
+                        <td class='docblock short'>
+                             <p>A wrapper around a string that is guaranteed to be
+a valid D-Bus bus name.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Interface.html'
+                               title='dbus::Interface'>Interface</a></td>
+                        <td class='docblock short'>
+                             <p>A wrapper around a string that is guaranteed to be
+a valid D-Bus interface name.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Member.html'
+                               title='dbus::Member'>Member</a></td>
+                        <td class='docblock short'>
+                             <p>A wrapper around a string that is guaranteed to be
+a valid D-Bus member, i e, a signal or method name.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='struct' href='struct.Message.html'
                                title='dbus::Message'>Message</a></td>
                         <td class='docblock short'>
@@ -115,6 +167,16 @@ when the scope ends.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Path.html'
+                               title='dbus::Path'>Path</a></td>
+                        <td class='docblock short'>
+                             <p>A wrapper around a string that is guaranteed to be
+a valid D-Bus object path.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='struct' href='struct.PropHandler.html'
                                title='dbus::PropHandler'>PropHandler</a></td>
                         <td class='docblock short'>
@@ -128,6 +190,25 @@ when the scope ends.</p>
                                title='dbus::Props'>Props</a></td>
                         <td class='docblock short'>
                              <p>Client side properties - get and set properties on a remote application.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Signature.html'
+                               title='dbus::Signature'>Signature</a></td>
+                        <td class='docblock short'>
+                             <p>A wrapper around a string that is guaranteed to be
+a valid (single) D-Bus type signature. Supersedes TypeSig.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.Watch.html'
+                               title='dbus::Watch'>Watch</a></td>
+                        <td class='docblock short'>
+                             <p>A file descriptor to watch for incoming events (for async I/O)</p>
 
                         </td>
                     </tr>
@@ -200,6 +281,14 @@ method calls, or as data added to a signal.</p>
                              
                         </td>
                     </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='enum' href='enum.WatchEvent.html'
+                               title='dbus::WatchEvent'>WatchEvent</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
                     <tr class=' module-item'>
@@ -225,10 +314,12 @@ method calls, or as data added to a signal.</p>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -245,7 +336,7 @@ method calls, or as data added to a signal.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -255,8 +346,8 @@ method calls, or as data added to a signal.</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -265,7 +356,7 @@ method calls, or as data added to a signal.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

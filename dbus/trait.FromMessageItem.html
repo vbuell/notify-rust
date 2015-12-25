@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>dbus</a></p><script>window.sidebarCurrent = {name: 'FromMessageItem', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,32 +45,33 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-9402' class='srclink' href='../src/dbus/message.rs.html#429-431' title='goto source code'>[src]</a></span></h1>
-<pre class='rust trait'>pub trait FromMessageItem&lt;'a&gt;: <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> {
-    fn <a href='#tymethod.from' class='fnname'>from</a>(i: &amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;Self, <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;;
+        </span><a id='src-1207' class='srclink' href='../src/dbus/message.rs.html#435-437' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait FromMessageItem&lt;'a&gt;: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> {
+    fn <a href='#tymethod.from' class='fnname'>from</a>(i: &amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;Self, <a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;;
 }</pre><div class='docblock'><p>Helper trait for <code>MessageItem::inner()</code></p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.from' class='method stab '><code>fn <a href='#tymethod.from' class='fnname'>from</a>(i: &amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;Self, <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h3></div>
+        <h3 id='tymethod.from' class='method stab '><code>fn <a href='#tymethod.from' class='fnname'>from</a>(i: &amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;Self, <a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></h3></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
-    <li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.i16.html'>i16</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for &amp;'a <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for &amp;'a <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a></code></li>
+    <li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.i16.html'>i16</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for &amp;'a <a href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for &amp;'a <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for &amp;'a <a class='struct' href='../dbus/struct.Path.html' title='dbus::Path'>Path</a></code></li>
 <li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for &amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for &amp;'a <a class='struct' href='http://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>&gt;</code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for &amp;'a <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>&gt;</code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a><a href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a></code></li>
 <li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for &amp;'a <a class='struct' href='../dbus/struct.OwnedFd.html' title='dbus::OwnedFd'>OwnedFd</a></code></li>
-<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='http://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(&amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>, &amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>)</a></code></li>
+<li><code>impl&lt;'a&gt; <a class='trait' href='../dbus/trait.FromMessageItem.html' title='dbus::FromMessageItem'>FromMessageItem</a>&lt;'a&gt; for <a href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(&amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>, &amp;'a <a class='enum' href='../dbus/enum.MessageItem.html' title='dbus::MessageItem'>MessageItem</a>)</a></code></li>
 </ul><script type="text/javascript" async
                               src="../implementors/dbus/trait.FromMessageItem.js">
                       </script></section>
@@ -78,10 +79,12 @@
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -98,7 +101,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -108,8 +111,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -118,7 +121,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
